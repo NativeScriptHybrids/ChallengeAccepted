@@ -1,16 +1,91 @@
 ﻿.title {
-    font-size: 30;
     horizontal-align: center;
-    margin: 20;
+    text-transform: uppercase;
+    font-size: 25;
+    color: silver;
+}
+.text-input {
+    display: inline-block;
+    width: 300;
+    padding: 10 0 10 15;
+    font-family: "Open Sans", sans;
+    font-weight: 400;
+    color: white;
+    border: 0;
+    text-indent: 70px;
+    transition: all .3s ease-in-out;
 }
 
-button {
-    font-size: 42;
-    horizontal-align: center;
+.white-button{
+    margin:15;
+    background-color: white;
+    color: black
+}
+/*button {*/
+    /*font-size: 42;*/
+    /*horizontal-align: center;*/
+/*}*/
+
+/*.message {*/
+    /*font-size: 20;*/
+    /*color: #284848;*/
+    /*horizontal-align: center;*/
+/*}*/
+
+.action-bar{
+    background-color: black;
 }
 
-.message {
+.page-background,{
+    background-color: indianred;
+}
+
+/*---fonts---*/
+.FontAwesome {
+    font-family: FontAwesome;
+}
+
+/*.IndieFlower {*/
+    /*font-family:IndieFlower;*/
+/*}*/
+
+/*.Lobster {*/
+    /*font-family:Lobster-Regular;*/
+/*}*/
+
+.BuxtonSketch {
+    font-family: BuxtonSketch;
+}
+
+.GoudySto {
+    font-family: GoudySto;
+}
+
+/*---main page---*/
+.main-action-bar{
+    background-color: black;
+}
+
+.main-page-segmented-bar{
+    background-color: black;
+    color: silver;
+}
+
+.main-label{
     font-size: 20;
-    color: #284848;
+    color: silver;
+    padding-bottom: 30;
     horizontal-align: center;
+    text-transform: uppercase;
 }
+
+/*---account pages---*/
+.register-page-background,{
+    background-color: cadetblue;
+}
+
+.login-page-background{
+    background-color: darkseagreen;
+}
+
+

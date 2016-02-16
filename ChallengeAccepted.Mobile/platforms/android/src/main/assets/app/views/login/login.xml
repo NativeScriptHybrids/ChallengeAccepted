@@ -1,0 +1,39 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <Page.actionBar>
+    <ActionBar class="action-bar">
+      <android>
+        <NavigationButton icon="~/images/challenge-accepted.png"/>
+      </android>
+      <ActionBar.actionItems>
+        <ActionItem icon="{{ 'res://dots-icon' }}"/>
+      </ActionBar.actionItems>
+      <ActionBar.titleView>
+        <GridLayout horizontalAlignment="center">
+          <Label horizontalAlignment="center" text="Login" class="GoudySto title"
+                 android:margin="0 0 0 -10"/>
+        </GridLayout>
+      </ActionBar.titleView>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout rows="auto, auto, *" class="page-background">
+    <GridLayout row="2" rows="50, auto, auto, *">
+      <TextField id="email" class="text-input" keyboardType="email" hint="E-mail" text="{{ email }}" row="1"/>
+      <TextField id="password" class="text-input" hint="Password" secure="true" text="{{ password }}" row="2"/>
+
+      <GridLayout row="3" rows="auto, auto" verticalAlignment="bottom">
+        <Button text="Login" id="login" tap="login" class="white-button" row="0"/>
+        <SegmentedBar row="1" id="login-segmented-bar" class="main-page-segmented-bar">
+          <SegmentedBar.items>
+            <SegmentedBarItem title="Register" tap="navWithPageName"/>
+            <SegmentedBarItem title="Home" tap="tapAction"/>
+            <SegmentedBarItem title="Login"/>
+          </SegmentedBar.items>
+        </SegmentedBar>
+      </GridLayout>
+    </GridLayout>
+
+    <AbsoluteLayout cssClass="activity-indicator" row="3">
+      <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
+    </AbsoluteLayout>
+  </GridLayout>
+</Page>
