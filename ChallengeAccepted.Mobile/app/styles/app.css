@@ -21,10 +21,11 @@
     background-color: white;
     color: black
 }
-/*button {*/
-    /*font-size: 42;*/
-    /*horizontal-align: center;*/
-/*}*/
+
+.button {
+    font-size: 42;
+    horizontal-align: center;
+}
 
 /*.message {*/
     /*font-size: 20;*/
@@ -88,4 +89,46 @@
     background-color: darkseagreen;
 }
 
+.challenge-stack {
+	background-color: #d3d3d3;
+	padding-left: 50;
+	padding-right: 50;
+}
+
+.challenge-title {
+	font-family: Confetti-Stream;
+	margin-top: 25;
+	margin-bottom: 25;
+	font-size: 36;
+	text-align: center;
+}
+
+.challenge-img {
+	border-radius: 20;
+	margin-bottom: 20;
+}
+
+.challenge-description {
+	font-size: 14;
+	font-style: italic;
+}
+
+.FontAwesome {
+    font-family: FontAwesome;
+}
+
+.pick-btn {
+	margin: 25 5;
+	border-radius: 20;
+	font-size: 18;
+	color: #fff;
+
+}
+.decline {
+	background-color: red;
+}
+
+.accept {
+	background-color: green;
+}
 
