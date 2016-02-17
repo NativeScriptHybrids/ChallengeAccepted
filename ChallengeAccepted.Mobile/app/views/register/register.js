@@ -1,5 +1,7 @@
-var vmModule = require("./register-view-model");
-var helperModule = require("~/common/helper-methods");
+var vmModule  = require("./../../view-models/register-view-model");
+var helperModule = require("~/common/helper");
+var buttonModule = require("ui/button");
+
 //var frameModule = require("ui/frame");
 //var topmost = frameModule.topmost();
 var view = require("ui/core/view");
@@ -8,18 +10,27 @@ var view = require("ui/core/view");
 var pageModules = (function() {
 
     //var topmost;
-    var segmentedBar;
+    var viewModel,
+        segmentedBar,
+        registerButton;
 
     var pageModules = {
 
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
-            //page.bindingContext = vmModule.mainViewModel;
+            viewModel = new vmModule.RegisterViewModel();
+            page.bindingContext = viewModel;
             // topmost = frameModule.topmost();
 
-            segmentedBar = view.getViewById(page, "register-segmented-bar");
+            segmentedBar = view.getViewById(page, 'register-segmented-bar');
             segmentedBar.selectedIndex = 0;
+
+            registerButton = view.getViewById(page, 'register-button');
+            registerButton.on(buttonModule.Button.tapEvent, function (args) {
+                //console.log(args);
+                viewModel.registerTap();
+            });
             attachEvents();
         },
 

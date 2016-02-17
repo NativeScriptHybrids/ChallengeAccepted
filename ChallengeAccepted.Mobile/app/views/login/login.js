@@ -1,5 +1,5 @@
-var vmModule = require("./login-view-model");
-var helperModule = require("~/common/helper-methods");
+var vmModule = require("./../../view-models/login-view-model");
+var helperModule = require("~/common/helper");
 //var frameModule = require("ui/frame");
 //var topmost = frameModule.topmost();
 var view = require("ui/core/view");
@@ -8,14 +8,16 @@ var view = require("ui/core/view");
 var pageModules = (function() {
 
     //var topmost;
-    var segmentedBar;
+    var viewModel,
+        segmentedBar;
 
     var pageModules = {
 
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
-            //page.bindingContext = vmModule.mainViewModel;
+            viewModel = new vmModule.LoginViewModel();
+            page.bindingContext = viewModel;
             // topmost = frameModule.topmost();
 
             segmentedBar = view.getViewById(page, "login-segmented-bar");

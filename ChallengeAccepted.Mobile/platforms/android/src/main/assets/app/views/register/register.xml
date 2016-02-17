@@ -17,15 +17,15 @@
     </Page.actionBar>
     <GridLayout rows="auto, auto, *" class="page-background">
         <GridLayout row="2" rows="50, auto, auto, auto, auto, auto, *">
-            <TextField id="email" class="text-input" keyboardType="email" hint="E-mail" text="{{ email }}" row="1"/>
-            <TextField id="password" class="text-input" hint="Password" secure="true" text="{{ password }}" row="2"/>
-            <TextField id="confirmPassword" class="text-input" hint="Confirm password" secure="true"
+            <TextField id="email" class="text-input" keyboardType="email" autocorrect="false" hint="E-mail" text="{{ email }}" row="1"/>
+            <TextField id="password" class="text-input" hint="Password" autocorrect="false" secure="true" text="{{ password }}" row="2"/>
+            <TextField id="confirmPassword" class="text-input" hint="Confirm password" autocorrect="false" secure="true"
                        text="{{ confirmPassword }}" row="3"/>
-            <TextField id="firstName" class="text-input" hint="First name (optional)" text="{{ firstName }}" row="4"/>
-            <TextField id="lastName" class="text-input" hint="Last name (optional)" text="{{ lastName }}" row="5"/>
+            <TextField id="firstName" class="text-input" autocorrect="false" hint="First name (optional)" text="{{ firstName }}" row="4"/>
+            <TextField id="lastName" class="text-input" autocorrect="false" hint="Last name (optional)" text="{{ lastName }}" row="5"/>
 
             <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
-                <Button text="Register" id="register" tap="register" class="white-button" row="0"/>
+                <Button text="Register" id="register-button" class="white-button" row="0"/>
                 <SegmentedBar row="1" id="register-segmented-bar" class="main-page-segmented-bar">
                     <SegmentedBar.items>
                         <SegmentedBarItem title="Register" tap="navWithPageName"/>

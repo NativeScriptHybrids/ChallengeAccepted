@@ -1,11 +1,11 @@
 var frameModule = require("ui/frame");
 
-var helperMethods = (function() {
+var HelperModule = (function() {
 
-    var helperMethods = {
+    var HelperModule = {
 
         navigateAnimated: function(toPagePath) {
-            console.log(toPagePath);
+
             var navigationEntry = {
                 moduleName: toPagePath,
                 // Makes the page we are navigating to to not be available on back button
@@ -29,7 +29,7 @@ var helperMethods = (function() {
         }
     }
 
-    return helperMethods;
+    return HelperModule;
 })();
 
-exports.navigateAnimated = helperMethods.navigateAnimated;
+exports.navigateAnimated = HelperModule.navigateAnimated;

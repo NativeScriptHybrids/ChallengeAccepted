@@ -1,5 +1,5 @@
 //var vmModule = require("./main-view-model");
-var helperModule = require("~/common/helper-methods");
+var helperModule = require("~/common/helper");
 //var frameModule = require("ui/frame");
 //var topmost = frameModule.topmost();
 var view = require("ui/core/view");
@@ -23,6 +23,7 @@ var pageModules = (function() {
             attachEvents();
         },
 
+        // TODO: extract to view model
         toRegister: function() {
             helperModule.navigateAnimated("./views/register/register");
         },
