@@ -19,6 +19,7 @@ var pageModules = (function() {
 
             segmentedBar = view.getViewById(page, "main-segmented-bar");
             segmentedBar.selectedIndex = 1;
+
             attachEvents();
         }
     }

@@ -11,3 +11,5 @@ var GlobalConstants = (function() {
 })();
 
 exports.BaseUrl = GlobalConstants.BaseUrl;
+exports.LocalStorageTokenKey = GlobalConstants.LocalStorageTokenKey;
+exports.LocalStorageUsernameKey = GlobalConstants.LocalStorageUsernameKey;

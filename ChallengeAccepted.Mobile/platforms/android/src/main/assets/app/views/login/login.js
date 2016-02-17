@@ -44,8 +44,7 @@ var pageModules = (function() {
 
         loginButton.on(buttonModule.Button.tapEvent, function (args) {
             //console.log(args);
-            viewModel.loginTap()
-                .then(helperModule.navigateAnimated("./views/challenge/challenge-to-pick"));
+            viewModel.loginTap();
         });
     }
 

@@ -39,8 +39,7 @@ var pageModules = (function() {
         });
 
         registerButton.on(buttonModule.Button.tapEvent, function (args) {
-            viewModel.registerTap()
-                .then(helperModule.navigateAnimated("./views/login/login"));
+            viewModel.registerTap();
         });
     }
 

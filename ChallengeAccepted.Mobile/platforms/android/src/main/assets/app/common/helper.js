@@ -30,11 +30,18 @@ var HelperModule = (function() {
 
         notify: function(message){
             alert(message);
+        },
+
+        handleHttpRequestError: function(response){
+            console.log(response);
+            var errorMessage = response.content.toJSON()['error_description'];
+            HelperModule.notify(errorMessage);
         }
-    }
+    };
 
     return HelperModule;
 })();
 
 exports.navigateAnimated = HelperModule.navigateAnimated;
 exports.notify = HelperModule.notify;
+exports.handleHttpRequestError = HelperModule.handleHttpRequestError;

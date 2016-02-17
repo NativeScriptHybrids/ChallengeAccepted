@@ -13,8 +13,8 @@ var RegisterViewModel = (function (_super) {
         this._email = '';
         this._password = '';
         this._confirmPassword = '';
-        this._firstName = '';
-        this._lastName = '';
+        //this._firstName = '';
+        //this._lastName = '';
 
         return this;
     }
@@ -57,23 +57,23 @@ var RegisterViewModel = (function (_super) {
         }
     });
 
-    Object.defineProperty(RegisterViewModel.prototype, 'firstName', {
-        get: function () {
-            return this._firstName;
-        },
-        set: function (value) {
-            this._firstName = value;
-        }
-    });
-
-    Object.defineProperty(RegisterViewModel.prototype, 'lastName', {
-        get: function () {
-            return this._lastName;
-        },
-        set: function (value) {
-            this._lastName = value;
-        }
-    });
+    //Object.defineProperty(RegisterViewModel.prototype, 'firstName', {
+    //    get: function () {
+    //        return this._firstName;
+    //    },
+    //    set: function (value) {
+    //        this._firstName = value;
+    //    }
+    //});
+    //
+    //Object.defineProperty(RegisterViewModel.prototype, 'lastName', {
+    //    get: function () {
+    //        return this._lastName;
+    //    },
+    //    set: function (value) {
+    //        this._lastName = value;
+    //    }
+    //});
 
     RegisterViewModel.prototype = {
 
@@ -97,9 +97,8 @@ var RegisterViewModel = (function (_super) {
                 return;
             }
 
-            accountServiceModule.register(self.email, self.password, self.confirmPassword, registerSuccess, error);
+            return accountServiceModule.register(self.email, self.password, self.confirmPassword, registerSuccess, helperModule.handleHttpRequestError);
             //alert("Signing in");
-
             //console.log(email);
 
             //if (!app.connectionApi.hasConnection()) {
@@ -120,12 +119,7 @@ var RegisterViewModel = (function (_super) {
 
     function registerSuccess(response) {
         helperModule.notify('Successfully registered!');
-    }
-
-    function error(response) {
-        console.log('error')
-        var errorMessage = response.content.toJSON()['error_description'];
-        helperModule.notify(errorMessage);
+        helperModule.navigateAnimated("./views/login/login");
     }
 
     return RegisterViewModel;

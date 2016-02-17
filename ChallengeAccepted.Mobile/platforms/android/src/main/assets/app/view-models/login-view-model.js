@@ -59,7 +59,7 @@ var LoginViewModel = (function (_super) {
                 return;
             }
 
-            return accountServiceModule.login(self.email, self.password, loginSuccess, error);
+            return accountServiceModule.login(self.email, self.password, loginSuccess, helperModule.handleHttpRequestError);
         },
 
         toRegister: function() {
@@ -81,11 +81,7 @@ var LoginViewModel = (function (_super) {
         //console.log('success', JSON.stringify(response));
 
         helperModule.notify('Logged in!');
-    }
-
-    function error(response) {
-        var errorMessage = response.content.toJSON()['error_description'];
-        helperModule.notify(errorMessage);
+        helperModule.navigateAnimated("./views/challenge/challenge-to-pick");
     }
 
     return LoginViewModel;
