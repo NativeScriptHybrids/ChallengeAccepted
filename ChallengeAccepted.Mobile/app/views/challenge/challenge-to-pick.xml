@@ -1,12 +1,12 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout class="challenge-stack">
-    <Label text="Elbow Challenge" class="challenge-title"/>
-	<Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFit" class="challenge-img" />
-	<Label text="Lick your elbow" class="challenge-description"/>
-	<Label text="Rating: " />
+  <StackLayout id="challenge-stack">
+    <Label text="Elbow Challenge" id="challenge-title"/>
+	<Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFit" id="challenge-img" />
+	<Label text="Lick your elbow" id="challenge-description"/>
+	<Label text="Rating: " id="challenge-rating"/>
 
 	<GridLayout columns="*, *" rows="auto">
-		<Button text="Decline" col="0" row="0"  horizontalAlignment="stretch" class="pick-btn decline"/>
+		<Button text="Decline" col="0" row="0"  horizontalAlignment="stretch" tap="onDeclineTap" class="pick-btn decline"/>
 		<Button text="Accept" col="1" row="0" horizontalAlignment="stretch" class="pick-btn accept"/>
   	</GridLayout>
 
