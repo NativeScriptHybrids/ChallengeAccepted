@@ -89,6 +89,7 @@
     background-color: darkseagreen;
 }
 
+/*---challenge-to-pick---*/
 .challenge-stack {
 	background-color: #d3d3d3;
 	padding-left: 50;
@@ -111,10 +112,6 @@
 .challenge-description {
 	font-size: 14;
 	font-style: italic;
-}
-
-.FontAwesome {
-    font-family: FontAwesome;
 }
 
 .pick-btn {
