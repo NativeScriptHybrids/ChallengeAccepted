@@ -2,7 +2,7 @@
     <Page.actionBar>
         <ActionBar class="action-bar">
             <android>
-                <NavigationButton icon="~/images/challenge-accepted.png"/>
+                <NavigationButton icon="~/images/challenge-accepted.png" width="20"/>
             </android>
             <ActionBar.actionItems>
                 <ActionItem icon="{{ 'res://dots-icon' }}"/>

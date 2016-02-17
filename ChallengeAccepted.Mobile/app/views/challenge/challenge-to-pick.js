@@ -1,6 +1,6 @@
 var page = require("ui/page");
 var view = require("ui/core/view");
-var helperModule = require("~/common/helper-methods");
+var helperModule = require("~/common/helper");
 var observable = require("data/observable");
 var frameModule = require("ui/frame");
 

@@ -1,5 +1,8 @@
+'use strict';
+
 var vmModule = require("./../../view-models/login-view-model");
 var helperModule = require("~/common/helper");
+var buttonModule = require("ui/button");
 //var frameModule = require("ui/frame");
 //var topmost = frameModule.topmost();
 var view = require("ui/core/view");
@@ -9,7 +12,8 @@ var pageModules = (function() {
 
     //var topmost;
     var viewModel,
-        segmentedBar;
+        segmentedBar,
+        loginButton;
 
     var pageModules = {
 
@@ -22,24 +26,26 @@ var pageModules = (function() {
 
             segmentedBar = view.getViewById(page, "login-segmented-bar");
             segmentedBar.selectedIndex = 2;
-            attachEvents();
-        },
 
-        toRegister: function() {
-            helperModule.navigateAnimated("./views/register/register");
-        },
-        toMain: function() {
-            helperModule.navigateAnimated("./views/main/main");
+            loginButton = view.getViewById(page, 'login-button');
+
+            attachEvents();
         }
-    }
+    };
 
     function attachEvents(){
         segmentedBar.on('propertyChange', function(){
             if (segmentedBar.selectedIndex === 0){
-                pageModules.toRegister();
+                viewModel.toRegister();
             }else if (segmentedBar.selectedIndex === 1){
-                pageModules.toMain();
+                viewModel.toMain();
             }
+        });
+
+        loginButton.on(buttonModule.Button.tapEvent, function (args) {
+            //console.log(args);
+            viewModel.loginTap()
+                .then(helperModule.navigateAnimated("./views/challenge/challenge-to-pick"));
         });
     }
 
@@ -47,6 +53,3 @@ var pageModules = (function() {
 })();
 
 exports.pageLoaded = pageModules.pageLoaded;
-exports.toRegister = pageModules.toRegister;
-exports.toLogin = pageModules.toLogin;
-exports.toMain = pageModules.toMain;

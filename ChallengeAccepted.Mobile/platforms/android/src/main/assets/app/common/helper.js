@@ -26,6 +26,10 @@ var HelperModule = (function() {
 
             var topmost = frameModule.topmost();
             topmost.navigate(navigationEntry);
+        },
+
+        notify: function(message){
+            alert(message);
         }
     }
 
@@ -33,3 +37,4 @@ var HelperModule = (function() {
 })();
 
 exports.navigateAnimated = HelperModule.navigateAnimated;
+exports.notify = HelperModule.notify;

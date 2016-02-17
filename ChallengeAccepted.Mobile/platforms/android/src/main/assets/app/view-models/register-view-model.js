@@ -3,6 +3,7 @@
 var observable = require("data/observable");
 var validationModule = require("~/common/validate");
 var accountServiceModule = require("~/data/account-service");
+var helperModule = require("~/common/helper");
 
 var RegisterViewModel = (function (_super) {
     __extends(RegisterViewModel, _super);
@@ -74,62 +75,60 @@ var RegisterViewModel = (function (_super) {
         }
     });
 
-    RegisterViewModel.prototype.registerTap = function () {
-        var self = this;
-        var isEmailValid = validationModule.isValidEmail(self.email);
-        if (!isEmailValid) {
-            alert('The email is incorrect.');
-            return;
+    RegisterViewModel.prototype = {
+
+        registerTap: function () {
+            var self = this;
+            var isEmailValid = validationModule.isValidEmail(self.email);
+            if (!isEmailValid) {
+                alert('The email is incorrect.');
+                return;
+            }
+
+            var isPasswordValid = validationModule.isValidPassword(self.password);
+            var isConfirmPasswordValid = validationModule.isValidPassword(self.confirmPassword);
+            if (!isPasswordValid || !isConfirmPasswordValid) {
+                alert('The password is incorrect.');
+                return;
+            }
+
+            if (!validationModule.passwordsMatch(self.password, self.confirmPassword)) {
+                alert('The password and confirmation password do not match.');
+                return;
+            }
+
+            accountServiceModule.register(self.email, self.password, self.confirmPassword, registerSuccess, error);
+            //alert("Signing in");
+
+            //console.log(email);
+
+            //if (!app.connectionApi.hasConnection()) {
+            //    app.notificationsApi.beep(1);
+            //    app.notifier.error('Please check your connection before register...');
+            //    return;
+            //}
+        },
+
+        toLogin: function () {
+            helperModule.navigateAnimated("./views/login/login");
+        },
+
+        toMain: function () {
+            helperModule.navigateAnimated("./views/main/main");
         }
-
-        var isPasswordValid = validationModule.isValidPassword(self.password);
-        var isConfirmPasswordValid = validationModule.isValidPassword(self.confirmPassword);
-        if (!isPasswordValid || !isConfirmPasswordValid) {
-            alert('The password is incorrect.');
-            return;
-        }
-
-        if (!validationModule.passwordsMatch(self.password, self.confirmPassword)) {
-            alert('The password and confirmation password do not match.');
-            return;
-        }
-
-        accountServiceModule.register(self.email, self.password, self.confirmPassword);
-        //alert("Signing in");
-
-        //console.log(email);
-
-        //if (!app.connectionApi.hasConnection()) {
-        //    app.notificationsApi.beep(1);
-        //    app.notifier.error('Please check your connection before register...');
-        //    return;
-        //}
-
-        //app.auth.register(email, password, confirmPassword).then(function(data) {
-        //    app.notifier.success('Registered');
-        //    app.main.navigate('views/login/login.html');
-        //}, app.errorHandler);
     };
+
+    function registerSuccess(response) {
+        helperModule.notify('Successfully registered!');
+    }
+
+    function error(response) {
+        console.log('error')
+        var errorMessage = response.content.toJSON()['error_description'];
+        helperModule.notify(errorMessage);
+    }
 
     return RegisterViewModel;
 }(observable.Observable));
 
 exports.RegisterViewModel = RegisterViewModel;
-//exports.mainViewModel = new RegisterViewModel();
-//
-//var RegisterViewModel = new observable.Observable({
-//    "email": '',
-//    "password": '',
-//    "confirmPassword": '',
-//    "firstName": '',
-//    "lastName": ''
-//});
-//
-//var registerAction = function() {
-//
-//    console.log('tap action');
-//    return registerAction;
-//};
-//
-//exports.registerViewModel = RegisterViewModel;
-//exports.registerAction = registerAction;

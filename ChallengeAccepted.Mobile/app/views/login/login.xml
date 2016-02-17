@@ -2,7 +2,7 @@
   <Page.actionBar>
     <ActionBar class="action-bar">
       <android>
-        <NavigationButton icon="~/images/challenge-accepted.png"/>
+        <NavigationButton icon="~/images/challenge-accepted.png" width="20"/>
       </android>
       <ActionBar.actionItems>
         <ActionItem icon="{{ 'res://dots-icon' }}"/>
@@ -21,7 +21,7 @@
       <TextField id="password" class="text-input" hint="Password" secure="true" text="{{ password }}" row="2"/>
 
       <GridLayout row="3" rows="auto, auto" verticalAlignment="bottom">
-        <Button text="Login" id="login" tap="login" class="white-button" row="0"/>
+        <Button text="Login" id="login-button" class="white-button" row="0"/>
         <SegmentedBar row="1" id="login-segmented-bar" class="main-page-segmented-bar">
           <SegmentedBar.items>
             <SegmentedBarItem title="Register" tap="navWithPageName"/>

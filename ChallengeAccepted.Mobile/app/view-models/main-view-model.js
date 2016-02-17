@@ -1,6 +1,7 @@
 'use strict';
 
 var observable = require("data/observable");
+var helperModule = require("~/common/helper");
 
 var MainViewModel = (function (_super) {
     __extends(MainViewModel, _super);
@@ -11,13 +12,16 @@ var MainViewModel = (function (_super) {
         return this;
     }
 
-    MainViewModel.prototype.toRegister = function () {
+    MainViewModel.prototype = {
 
-    }
+        toRegister: function () {
+            helperModule.navigateAnimated("./views/register/register");
+        },
 
-    MainViewModel.prototype.toLogin = function () {
-
-    }
+        toLogin: function () {
+            helperModule.navigateAnimated("./views/login/login");
+        }
+    };
 
     return MainViewModel;
 }(observable.Observable));

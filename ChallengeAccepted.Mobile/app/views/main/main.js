@@ -1,43 +1,34 @@
-//var vmModule = require("./main-view-model");
+'use strict';
+
+var vmModule = require("./../../view-models/main-view-model");
 var helperModule = require("~/common/helper");
-//var frameModule = require("ui/frame");
-//var topmost = frameModule.topmost();
 var view = require("ui/core/view");
-//var http = require("http");
 
 var pageModules = (function() {
 
-    //var topmost;
-    var segmentedBar;
+    var viewModel,
+        segmentedBar;
 
     var pageModules = {
 
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
-            //page.bindingContext = vmModule.mainViewModel;
-           // topmost = frameModule.topmost();
+            viewModel = new vmModule.MainViewModel();
+            page.bindingContext = viewModel;
 
             segmentedBar = view.getViewById(page, "main-segmented-bar");
             segmentedBar.selectedIndex = 1;
             attachEvents();
-        },
-
-        // TODO: extract to view model
-        toRegister: function() {
-            helperModule.navigateAnimated("./views/register/register");
-        },
-        toLogin: function() {
-            helperModule.navigateAnimated("./views/login/login");
         }
     }
 
     function attachEvents(){
         segmentedBar.on('propertyChange', function(){
             if (segmentedBar.selectedIndex === 0){
-                pageModules.toRegister();
+                viewModel.toRegister();
             }else if (segmentedBar.selectedIndex === 2){
-                pageModules.toLogin();
+                viewModel.toLogin();
             }
         });
     }
@@ -46,6 +37,3 @@ var pageModules = (function() {
 })();
 
 exports.pageLoaded = pageModules.pageLoaded;
-exports.toRegister = pageModules.toRegister;
-exports.toLogin = pageModules.toLogin;
-exports.toMain = pageModules.toMain;

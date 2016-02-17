@@ -2,8 +2,9 @@ var GlobalConstants = (function() {
 
     var GlobalConstants = {
 
-        BaseUrl: 'https://challengeaccepted.azurewebsites.net/'
-
+        BaseUrl: 'https://challengeaccepted.azurewebsites.net/',
+        LocalStorageTokenKey: 'ChallengeAcceptedToken',
+        LocalStorageUsernameKey: 'ChallengeAcceptedUsername'
     };
 
     return GlobalConstants;

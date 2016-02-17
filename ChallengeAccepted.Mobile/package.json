@@ -1,11 +1,14 @@
 {
-	"nativescript": {
-		"id": "org.nativescript.ChallengeAcceptedMobile",
-		"tns-android": {
-			"version": "1.5.1"
-		}
-	},
-	"dependencies": {
-		"tns-core-modules": "1.5.2"
-	}
+  "nativescript": {
+    "id": "org.nativescript.ChallengeAcceptedMobile",
+    "tns-android": {
+      "version": "1.5.1"
+    }
+  },
+  "dependencies": {
+    "moment": "^2.11.2",
+    "node-notifier": "^4.5.0",
+    "tns-core-modules": "1.5.2",
+    "toastr": "^2.1.2"
+  }
 }
