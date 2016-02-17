@@ -97,7 +97,7 @@ var RegisterViewModel = (function (_super) {
                 return;
             }
 
-            return accountServiceModule.register(self.email, self.password, self.confirmPassword, registerSuccess, helperModule.handleHttpRequestError);
+            return accountServiceModule.register(self, registerSuccess, helperModule.handleHttpRequestError);
             //alert("Signing in");
             //console.log(email);
 

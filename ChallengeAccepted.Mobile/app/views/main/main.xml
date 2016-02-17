@@ -22,8 +22,8 @@
     <GridLayout row="3">
       <SegmentedBar id="main-segmented-bar" class="main-page-segmented-bar">
         <SegmentedBar.items>
-          <SegmentedBarItem title="Register" tap="navWithPageName" />
-          <SegmentedBarItem title="Home" tap="tapAction"/>
+          <SegmentedBarItem title="Register" />
+          <SegmentedBarItem title="Home" />
           <SegmentedBarItem title="Login" />
         </SegmentedBar.items>
       </SegmentedBar>

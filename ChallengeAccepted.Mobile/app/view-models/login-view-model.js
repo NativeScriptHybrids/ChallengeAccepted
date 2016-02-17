@@ -59,7 +59,7 @@ var LoginViewModel = (function (_super) {
                 return;
             }
 
-            return accountServiceModule.login(self.email, self.password, loginSuccess, helperModule.handleHttpRequestError);
+            return accountServiceModule.login(self, loginSuccess, helperModule.handleHttpRequestError);
         },
 
         toRegister: function() {
@@ -81,6 +81,8 @@ var LoginViewModel = (function (_super) {
         //console.log('success', JSON.stringify(response));
 
         helperModule.notify('Logged in!');
+
+        // TODO: change to another page
         helperModule.navigateAnimated("./views/challenge/challenge-to-pick");
     }
 

@@ -1,14 +1,15 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
   <Page.actionBar>
-    <ActionBar class="action-bar">
-      <android>
-        <NavigationButton icon="~/images/challenge-accepted.png" width="20"/>
-      </android>
+    <ActionBar class="action-bar" title="Login" android.icon="res://icon" android.iconVisibility="always">
+      <!--<android>-->
+        <!--<NavigationButton class="nav-button" icon="~/images/challenge-accepted.png"/>-->
+      <!--</android>-->
       <ActionBar.actionItems>
         <ActionItem icon="{{ 'res://dots-icon' }}"/>
       </ActionBar.actionItems>
       <ActionBar.titleView>
         <GridLayout horizontalAlignment="center">
+
           <Label horizontalAlignment="center" text="Login" class="GoudySto title"
                  android:margin="0 0 0 -10"/>
         </GridLayout>

@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+    <Page.actionBar>
+        <ActionBar class="action-bar" title="Register" android.icon="res://icon" android.iconVisibility="always">
+            <!--<android>-->
+                <!--<NavigationButton icon="~/images/challenge-accepted.png" width="20"/>-->
+            <!--</android>-->
+            <ActionBar.actionItems>
+                <ActionItem icon="{{ 'res://dots-icon' }}"/>
+            </ActionBar.actionItems>
+            <ActionBar.titleView>
+                <GridLayout horizontalAlignment="center">
+                    <Label horizontalAlignment="center" text="{{ firstName + lastName }}" class="GoudySto title"
+                           android:margin="0 0 0 -10"/>
+                </GridLayout>
+            </ActionBar.titleView>
+        </ActionBar>
+    </Page.actionBar>
+    <GridLayout rows="auto, auto, *" class="page-background">
+        <SegmentedBar row="0" id="profile-challenges-segmented-bar" class="main-page-segmented-bar">
+            <SegmentedBar.items>
+                <SegmentedBarItem title="Active"/>
+                <SegmentedBarItem title="Done"/>
+                <SegmentedBarItem title="CH"/>
+                <SegmentedBarItem title="Added"/>
+                <SegmentedBarItem title="Badges"/>
+            </SegmentedBar.items>
+        </SegmentedBar>
+        <GridLayout row="2" rows="50, auto, auto, auto, auto, auto, *">
+            <Image row="0" src="{{ imageUrl }}"/>
+            <Label id="email" class=""  text="{{ email }}" row="1"/>
+            <Label id="score" class="" text="{{ score }}" row="2"/>
+            <Label id="latitude" class="" text="{{ location.latitude }}" row="3"/>
+            <Label id="logitude" class="" text="{{ location.longitude }}" row="3"/>
+
+            <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
+                <!--<Button text="Register" id="register-button" class="white-button" row="0"/>-->
+                <SegmentedBar row="1" id="profile-segmented-bar" class="main-page-segmented-bar">
+                    <SegmentedBar.items>
+                        <SegmentedBarItem title="Add"/>
+                        <SegmentedBarItem title="Pick"/>
+                        <SegmentedBarItem title="Profile"/>
+                        <SegmentedBarItem title="Peek"/>
+                        <SegmentedBarItem title="Logout"/>
+                    </SegmentedBar.items>
+                </SegmentedBar>
+            </GridLayout>
+        </GridLayout>
+
+        <AbsoluteLayout cssClass="activity-indicator" row="3">
+            <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
+        </AbsoluteLayout>
+    </GridLayout>
+</Page>

@@ -1,9 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
     <Page.actionBar>
-        <ActionBar class="action-bar">
-            <android>
-                <NavigationButton icon="~/images/challenge-accepted.png" width="20"/>
-            </android>
+        <ActionBar class="action-bar" title="Register" android.icon="res://icon" android.iconVisibility="always">
+            <!--<android>-->
+                <!--<NavigationButton icon="~/images/challenge-accepted.png" width="20"/>-->
+            <!--</android>-->
             <ActionBar.actionItems>
                 <ActionItem icon="{{ 'res://dots-icon' }}"/>
             </ActionBar.actionItems>
@@ -28,8 +28,8 @@
                 <Button text="Register" id="register-button" class="white-button" row="0"/>
                 <SegmentedBar row="1" id="register-segmented-bar" class="main-page-segmented-bar">
                     <SegmentedBar.items>
-                        <SegmentedBarItem title="Register" tap="navWithPageName"/>
-                        <SegmentedBarItem title="Home" tap="tapAction"/>
+                        <SegmentedBarItem title="Register"/>
+                        <SegmentedBarItem title="Home"/>
                         <SegmentedBarItem title="Login"/>
                     </SegmentedBar.items>
                 </SegmentedBar>

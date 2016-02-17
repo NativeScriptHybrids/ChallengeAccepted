@@ -4,6 +4,16 @@ var HelperModule = (function() {
 
     var HelperModule = {
 
+        navigate: function(toPagePath) {
+
+            var navigationEntry = {
+                moduleName: toPagePath
+            };
+
+            var topmost = frameModule.topmost();
+            topmost.navigate(navigationEntry);
+        },
+
         navigateAnimated: function(toPagePath) {
 
             var navigationEntry = {
@@ -42,6 +52,7 @@ var HelperModule = (function() {
     return HelperModule;
 })();
 
+exports.navigate = HelperModule.navigate;
 exports.navigateAnimated = HelperModule.navigateAnimated;
 exports.notify = HelperModule.notify;
 exports.handleHttpRequestError = HelperModule.handleHttpRequestError;

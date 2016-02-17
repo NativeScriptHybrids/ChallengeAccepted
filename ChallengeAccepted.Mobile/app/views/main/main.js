@@ -3,6 +3,7 @@
 var vmModule = require("./../../view-models/main-view-model");
 var helperModule = require("~/common/helper");
 var view = require("ui/core/view");
+var accountServiceModule = require("~/data/account-service");
 
 var pageModules = (function() {
 
@@ -21,8 +22,13 @@ var pageModules = (function() {
             segmentedBar.selectedIndex = 1;
 
             attachEvents();
+
+            // TODO: change to another page
+            if (accountServiceModule.isAuthenticated()){
+                helperModule.navigate("./views/profile/profile");
+            }
         }
-    }
+    };
 
     function attachEvents(){
         segmentedBar.on('propertyChange', function(){

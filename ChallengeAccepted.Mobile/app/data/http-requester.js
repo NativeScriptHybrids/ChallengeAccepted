@@ -11,6 +11,7 @@ var HttpRequester = (function () {
             content: content,
             headers: headers
         }).then(function (response) {
+            console.log(response.statusCode);
             if (response.statusCode === 200) {
                 success(response);
             } else {
