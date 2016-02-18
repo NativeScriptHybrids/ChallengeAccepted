@@ -5,6 +5,7 @@ using System.Web;
 using ChallengeAccepted.Api.Mapping;
 using ChallengeAccepted.Api.ViewModels.AssignedChallenge;
 using ChallengeAccepted.Api.ViewModels.Badge;
+using ChallengeAccepted.Api.ViewModels.Challenge;
 using ChallengeAccepted.Models;
 
 namespace ChallengeAccepted.Api.ViewModels.Account
@@ -21,7 +22,9 @@ namespace ChallengeAccepted.Api.ViewModels.Account
 
         public string LastName { get; set; }
 
-        public virtual ICollection<ChallengeResponseViewModel> AssignedChallenges { get; set; }
+        public virtual ICollection<ChallengeViewModel> CreatedChallenges { get; set; }
+
+        public virtual ICollection<ChallengeResponseViewModel> ChallengeResponses { get; set; }
 
         public virtual ICollection<BadgeViewModel> Badges { get; set; }
 
