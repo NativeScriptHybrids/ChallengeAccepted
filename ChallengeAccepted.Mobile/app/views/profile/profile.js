@@ -18,12 +18,26 @@ var pageModules = (function() {
 
     var pageModules = {
 
+    //    pageNavigatingTo: function(args) {
+    //        var page = args.object;
+    //        viewModel = new vmModule.ProfileViewModel();
+    //        page.bindingContext = viewModel;
+    //        bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
+    //        bottomSegmentedBar.selectedIndex = 2;
+    //
+    //        topSegmentedBar = view.getViewById(page, 'profile-challenges-segmented-bar');
+    //        topSegmentedBar.selectedIndex = 2;
+    //        //accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
+    //},
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
             console.log('Navigation Context: ' + JSON.stringify(page.navigationContext));
-            viewModel = new vmModule.ProfileViewModel();
+            viewModel = vmModule.ProfileViewModel;
             page.bindingContext = viewModel;
+           // viewModel.refresh();
+            console.log('in view ' + viewModel.email);
+            console.log('in view ' + viewModel.username);
 
             bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
             bottomSegmentedBar.selectedIndex = 2;
@@ -32,7 +46,7 @@ var pageModules = (function() {
             topSegmentedBar.selectedIndex = 2;
             //registerButton = view.getViewById(page, 'register-button');
 
-            accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
+            //accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
             attachEvents();
         }
     };
@@ -72,17 +86,20 @@ var pageModules = (function() {
         //});
     }
 
-    function getProfileSuccess(response) {
-        //Store in local storage
-        //var firstName = response.content.toJSON()['firstName'];
-        //var lastName = response.content.toJSON()['lastName'];
-
-        console.log('success', JSON.stringify(response));
-
-        //todo to view model function in view model - return new and populate labels
-    }
+//    function getProfileSuccess(response) {
+//        //Store in local storage
+//        viewModel.mapResponseToViewModel(response);
+//        //pageModules.pageLoaded();
+//        //    .firstName = response.content.toJSON()['FirstName'];
+//        //viewModel.lastName = response.content.toJSON()['LastName'];
+//        //viewModel.username = response.content.toJSON()['Username'];
+//console.log(viewModel.username);
+//        console.log('success', JSON.stringify(response));
+//
+//        //todo to view model function in view model - return new and populate labels
+//    }
 
     return pageModules;
 })();
-
+//exports.pageNavigatingTo = pageModules.pageNavigatingTo;
 exports.pageLoaded = pageModules.pageLoaded;

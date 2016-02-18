@@ -82,11 +82,7 @@ var LoginViewModel = (function (_super) {
 
         helperModule.notify('Logged in!');
 
-        // TODO: change to another page
-        helperModule.navigateAnimated("./views/profile/profile", {
-            "email": username,
-            "token": token,
-        });
+        helperModule.navigateAnimated("./views/profile/profile");
     }
 
     return LoginViewModel;
