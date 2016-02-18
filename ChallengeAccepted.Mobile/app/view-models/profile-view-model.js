@@ -10,6 +10,7 @@ var ProfileViewModel = (function (_super) {
 
     function ProfileViewModel() {
         _super.call(this);
+        this._username = '';
         this._email = '';
         this._imageUrl = '';
         this._location = {
@@ -22,6 +23,15 @@ var ProfileViewModel = (function (_super) {
 
         return this;
     }
+
+    Object.defineProperty(ProfileViewModel.prototype, "username", {
+        get: function () {
+            return this._username;
+        },
+        set: function (value) {
+            return;
+        }
+    });
 
     Object.defineProperty(ProfileViewModel.prototype, "email", {
         get: function () {

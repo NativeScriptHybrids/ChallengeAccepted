@@ -4,7 +4,7 @@ var AppSettings = require("application-settings");
 
 var HttpRequester = (function () {
 
-    function makeRequest (actionUrl, method, content, headers, success, error) {
+    function makePostRequest (actionUrl, method, content, headers, success, error) {
         return http.request({
             url: globalConstants.BaseUrl + actionUrl,
             method: method,
@@ -18,6 +18,27 @@ var HttpRequester = (function () {
                 error(response)
             }
         }).catch(function (error) {
+            console.log('error');
+            console.log(error);
+            throw new Error(JSON.stringify(error.content));
+        });
+    }
+
+    function makeGetRequest (actionUrl, method, headers, success, error) {
+        return http.request({
+            url: globalConstants.BaseUrl + actionUrl,
+            method: method,
+            headers: headers
+        }).then(function (response) {
+            console.log(response.statusCode);
+            if (response.statusCode === 200) {
+                success(response);
+            } else {
+                error(response)
+            }
+        }).catch(function (error) {
+            console.log('error');
+            console.log(error);
             throw new Error(JSON.stringify(error.content));
         });
     }
@@ -25,11 +46,11 @@ var HttpRequester = (function () {
     var HttpRequester = {
 
         get: function(actionUrl, headers, success, error){
-            return makeRequest(actionUrl, 'GET', '', headers, success, error);
+            return makeGetRequest(actionUrl, 'GET', headers, success, error);
         },
 
         post: function(actionUrl, content, headers, success, error){
-            return makeRequest(actionUrl, 'POST', content, headers, success, error);
+            return makePostRequest(actionUrl, 'POST', content, headers, success, error);
         },
 
         authGet: function(actionUrl, success, error){
@@ -38,7 +59,7 @@ var HttpRequester = (function () {
                 "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
             };
 
-            return makeRequest(actionUrl, 'GET', headers, success, error);
+            return makeGetRequest(actionUrl, 'GET', headers, success, error);
         },
 
         authPost: function(actionUrl, content, success, error){
@@ -47,7 +68,7 @@ var HttpRequester = (function () {
                 "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
             };
 
-            return makeRequest(actionUrl, 'POST', content, headers, success, error);
+            return makePostRequest(actionUrl, 'POST', content, headers, success, error);
         }
     };
 

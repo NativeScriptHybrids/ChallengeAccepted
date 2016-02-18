@@ -74,10 +74,11 @@ var pageModules = (function() {
 
     function getProfileSuccess(response) {
         //Store in local storage
-        var firstName = response.content.toJSON()['firstName'];
-        var lastName = response.content.toJSON()['lastName'];
+        //var firstName = response.content.toJSON()['firstName'];
+        //var lastName = response.content.toJSON()['lastName'];
 
         console.log('success', JSON.stringify(response));
+
         //todo to view model function in view model - return new and populate labels
     }
 

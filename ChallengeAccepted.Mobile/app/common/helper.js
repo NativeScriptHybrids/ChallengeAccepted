@@ -43,6 +43,7 @@ var HelperModule = (function() {
 
         handleHttpRequestError: function(response){
             console.log(response);
+            console.log(error);
             var errorMessage = response.content.toJSON()['error_description'];
             HelperModule.notify(errorMessage);
         }
