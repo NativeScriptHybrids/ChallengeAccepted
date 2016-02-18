@@ -5,13 +5,15 @@ var helperModule = require("~/common/helper");
 var buttonModule = require("ui/button");
 var view = require("ui/core/view");
 var accountServiceModule = require("~/data/account-service");
+var AppSettings = require("application-settings");
+var globalConstants = require("~/common/global-constants");
 
 var pageModules = (function() {
 
     //var topmost;
     var viewModel,
-        segmentedBar,
-        challengesSegmentedBar,
+        topSegmentedBar,
+        bottomSegmentedBar,
         registerButton;
 
     var pageModules = {
@@ -19,14 +21,15 @@ var pageModules = (function() {
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
+            console.log('Navigation Context: ' + JSON.stringify(page.navigationContext));
             viewModel = new vmModule.ProfileViewModel();
             page.bindingContext = viewModel;
 
-            segmentedBar = view.getViewById(page, 'profile-segmented-bar');
-            segmentedBar.selectedIndex = 2;
+            bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
+            bottomSegmentedBar.selectedIndex = 2;
 
-            challengesSegmentedBar = view.getViewById(page, 'profile-challenges-segmented-bar');
-            challengesSegmentedBar.selectedIndex = 2;
+            topSegmentedBar = view.getViewById(page, 'profile-challenges-segmented-bar');
+            topSegmentedBar.selectedIndex = 2;
             //registerButton = view.getViewById(page, 'register-button');
 
             accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
@@ -35,27 +38,32 @@ var pageModules = (function() {
     };
 
     function attachEvents(){
-        segmentedBar.on('propertyChange', function(){
-            if (segmentedBar.selectedIndex === 0){
+        topSegmentedBar.on('propertyChange', function(){
+            if (topSegmentedBar.selectedIndex === 0){
                // viewModel.toMain();
-            }else if (segmentedBar.selectedIndex === 1){
+            }else if (topSegmentedBar.selectedIndex === 1){
                // viewModel.toLogin();
-            }else if (segmentedBar.selectedIndex === 3){
+            }else if (topSegmentedBar.selectedIndex === 2){
                 // viewModel.toLogin();
-            }else if (segmentedBar.selectedIndex === 4){
+            }else if (topSegmentedBar.selectedIndex === 3){
+                // viewModel.toLogin();
+            }else if (topSegmentedBar.selectedIndex === 4){
                 // viewModel.toLogin();
             }
         });
 
-        challengesSegmentedBar.on('propertyChange', function(){
-            if (segmentedBar.selectedIndex === 0){
+        bottomSegmentedBar.on('propertyChange', function(){
+            if (bottomSegmentedBar.selectedIndex === 0){ //Add
                 // viewModel.toMain();
-            }else if (segmentedBar.selectedIndex === 1){
-                // viewModel.toLogin();
-            }else if (segmentedBar.selectedIndex === 3){
-                // viewModel.toLogin();
-            }else if (segmentedBar.selectedIndex === 4){
-                // viewModel.toLogin();
+            }else if (bottomSegmentedBar.selectedIndex === 1){ //Pick
+                helperModule.navigate("./views/challenge/challenge-to-pick");
+            }else if (bottomSegmentedBar.selectedIndex === 3){ //Profile
+                
+            }else if (bottomSegmentedBar.selectedIndex === 4){ //LogOut
+                AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
+                AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
+
+                helperModule.navigate("./views/main/main");
             }
         });
 

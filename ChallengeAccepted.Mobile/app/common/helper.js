@@ -4,25 +4,24 @@ var HelperModule = (function() {
 
     var HelperModule = {
 
-        navigate: function(toPagePath) {
+        navigate: function(toPagePath, contextObj) {
 
             var navigationEntry = {
-                moduleName: toPagePath
+                moduleName: toPagePath,
+                context: contextObj
             };
 
             var topmost = frameModule.topmost();
             topmost.navigate(navigationEntry);
         },
 
-        navigateAnimated: function(toPagePath) {
+        navigateAnimated: function(toPagePath, contextObj) {
 
             var navigationEntry = {
                 moduleName: toPagePath,
                 // Makes the page we are navigating to to not be available on back button
                 //backstackVisible: false,
-                //context: {
-                //    info: "Passed from Main Page.",
-                //},
+                context: contextObj,
                 animated: true,
                 navigationTransition: {
                     transition: "slide ",

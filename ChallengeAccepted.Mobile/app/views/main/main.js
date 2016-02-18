@@ -4,6 +4,8 @@ var vmModule = require("./../../view-models/main-view-model");
 var helperModule = require("~/common/helper");
 var view = require("ui/core/view");
 var accountServiceModule = require("~/data/account-service");
+var AppSettings = require("application-settings");
+var globalConstants = require("~/common/global-constants");
 
 var pageModules = (function() {
 
@@ -20,6 +22,9 @@ var pageModules = (function() {
 
             segmentedBar = view.getViewById(page, "main-segmented-bar");
             segmentedBar.selectedIndex = 1;
+
+            AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
+            AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
 
             attachEvents();
 
