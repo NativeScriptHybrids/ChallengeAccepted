@@ -109,11 +109,11 @@ var RegisterViewModel = (function (_super) {
         },
 
         toLogin: function () {
-            helperModule.navigateAnimated("./views/login/login");
+            helperModule.navigateAnimated("./views/account/login");
         },
 
         toMain: function () {
-            helperModule.navigateAnimated("./views/main/main");
+            helperModule.navigateAnimated("./views/main");
         }
     };
 

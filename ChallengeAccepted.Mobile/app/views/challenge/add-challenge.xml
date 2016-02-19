@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <Page.actionBar>
+    <ActionBar class="main-action-bar">
+      <ActionBar.actionItems>
+        <ActionItem icon="{{ 'res://dots-icon' }}"/>
+      </ActionBar.actionItems>
+      <ActionBar.titleView>
+        <GridLayout horizontalAlignment="center">
+          <Label horizontalAlignment="center" text="Add Challenge" class="GoudySto title" />
+        </GridLayout>
+      </ActionBar.titleView>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout rows="auto, auto, *" class="page-background">
+      <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
+        <SegmentedBar row="1" id="bottom-segmented-bar" class="main-page-segmented-bar">
+          <SegmentedBar.items>
+            <SegmentedBarItem title="Add"/>
+            <SegmentedBarItem title="Pick"/>
+            <SegmentedBarItem title="Profile"/>
+            <SegmentedBarItem title="Peek"/>
+            <SegmentedBarItem title="Logout"/>
+          </SegmentedBar.items>
+        </SegmentedBar>
+    </GridLayout>
+    <AbsoluteLayout cssClass="activity-indicator" row="3">
+      <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
+    </AbsoluteLayout>
+  </GridLayout>
+</Page>

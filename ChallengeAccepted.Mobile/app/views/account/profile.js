@@ -7,6 +7,7 @@ var view = require("ui/core/view");
 var accountServiceModule = require("~/data/account-service");
 var AppSettings = require("application-settings");
 var globalConstants = require("~/common/global-constants");
+var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 
 var pageModules = (function() {
 
@@ -35,9 +36,6 @@ var pageModules = (function() {
             console.log('Navigation Context: ' + JSON.stringify(page.navigationContext));
             viewModel = vmModule.ProfileViewModel;
             page.bindingContext = viewModel;
-           // viewModel.refresh();
-            console.log('in view ' + viewModel.email);
-            console.log('in view ' + viewModel.username);
 
             bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
             bottomSegmentedBar.selectedIndex = 2;
@@ -52,6 +50,7 @@ var pageModules = (function() {
     };
 
     function attachEvents(){
+        segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
         topSegmentedBar.on('propertyChange', function(){
             if (topSegmentedBar.selectedIndex === 0){
                // viewModel.toMain();
@@ -63,21 +62,6 @@ var pageModules = (function() {
                 // viewModel.toLogin();
             }else if (topSegmentedBar.selectedIndex === 4){
                 // viewModel.toLogin();
-            }
-        });
-
-        bottomSegmentedBar.on('propertyChange', function(){
-            if (bottomSegmentedBar.selectedIndex === 0){ //Add
-                // viewModel.toMain();
-            }else if (bottomSegmentedBar.selectedIndex === 1){ //Pick
-                helperModule.navigate("./views/challenge/challenge-to-pick");
-            }else if (bottomSegmentedBar.selectedIndex === 3){ //Profile
-                
-            }else if (bottomSegmentedBar.selectedIndex === 4){ //LogOut
-                AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
-                AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
-
-                helperModule.navigate("./views/main/main");
             }
         });
 

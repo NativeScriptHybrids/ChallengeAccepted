@@ -15,11 +15,11 @@ var MainViewModel = (function (_super) {
     MainViewModel.prototype = {
 
         toRegister: function () {
-            helperModule.navigateAnimated("./views/register/register");
+            helperModule.navigateAnimated("./views/account/register");
         },
 
         toLogin: function () {
-            helperModule.navigateAnimated("./views/login/login");
+            helperModule.navigateAnimated("./views/account/login");
         }
     };
 
