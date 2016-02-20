@@ -6,7 +6,7 @@
       </ActionBar.actionItems>
       <ActionBar.titleView>
         <GridLayout horizontalAlignment="center">
-          <Label horizontalAlignment="center" text="Add Challenge" class="GoudySto title" />
+          <Label horizontalAlignment="center" text="Active" class="GoudySto title" />
         </GridLayout>
       </ActionBar.titleView>
     </ActionBar>

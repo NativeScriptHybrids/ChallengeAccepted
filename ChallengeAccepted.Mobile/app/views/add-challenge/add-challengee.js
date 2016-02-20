@@ -55,7 +55,7 @@ var addModule = (function() {
         	}
 
         	userService.addChallenge(newChallenge, addSuccess, helperModule.handleHttpRequestError);      	
-        }
+        },
 
         onBackToProfileBtnTap: function() {
         	topmost.goBack();

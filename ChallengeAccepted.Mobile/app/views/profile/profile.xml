@@ -20,26 +20,39 @@
             <SegmentedBar.items>
                 <SegmentedBarItem title="Active"/>
                 <SegmentedBarItem title="Done"/>
-                <SegmentedBarItem title="CH"/>
+                <SegmentedBarItem title="Edit"/>
                 <SegmentedBarItem title="Added"/>
                 <SegmentedBarItem title="Badges"/>
             </SegmentedBar.items>
         </SegmentedBar>
-        <GridLayout row="2" rows="50, auto, auto, auto, auto, auto, *">
-            <Image row="0" src="{{ imageUrl }}"/>
-            <Label id="email" class=""  text="{{ email }}" row="1"/>
-            <Label id="score" class="" text="{{ score }}" row="2"/>
-            <Label id="latitude" class="" text="{{ location.latitude }}" row="3"/>
-            <Label id="logitude" class="" text="{{ location.longitude }}" row="3"/>
+        <GridLayout id="profile-info-grid" row="2" rows="auto, auto, auto, auto, auto, auto, *">
+            <Image row="0" src="{{ imageUrl }}" class="profile-image" stretch="aspectFill"/>
+            <Label id="fullName" class="profile-label" text="{{ fullName }}"  row="1" />
+            <StackLayout row="2">
+                <Label id="emailTitle" class="profile-label-title"  text="Email" />
+                <Border class="profile-border"/>
+                <Label id="email" class="profile-label"  text="{{ email }}" />
+            </StackLayout>
+            <StackLayout row="3">
+                <Label id="scoreTitle" class="profile-label-title"  text="Score" />
+                <Border class="profile-border"/>
+                <Label id="score" class="profile-label" text="{{ score }}" row="3"/>
+            </StackLayout>
+            <StackLayout row="4">
+                <Label id="locationTitle" class="profile-label-title"  text="Location" />
+                <Border class="profile-border"/>
+                <Label id="latitude" class="profile-label" text="{{ location.latitude }}" />
+                <Label id="longitude" class="profile-label" text="{{ location.longitude }}" />
+            </StackLayout>
+
 
             <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
-                <!--<Button text="Register" id="register-button" class="white-button" row="0"/>-->
                 <SegmentedBar row="1" id="profile-segmented-bar" class="main-page-segmented-bar">
                     <SegmentedBar.items>
                         <SegmentedBarItem title="Add"/>
                         <SegmentedBarItem title="Pick"/>
                         <SegmentedBarItem title="Profile"/>
-                        <SegmentedBarItem title="Peek"/>
+                        <SegmentedBarItem title="Rate"/>
                         <SegmentedBarItem title="Logout"/>
                     </SegmentedBar.items>
                 </SegmentedBar>

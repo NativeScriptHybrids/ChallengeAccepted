@@ -5,7 +5,9 @@ var validationModule = require("~/common/validate");
 var accountServiceModule = require("~/data/account-service");
 var helperModule = require("~/common/helper");
 
-var ProfileViewModel = new observable.Observable();
+var ProfileViewModel = new observable.Observable({
+    'email': ''
+});
 
 accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
 
@@ -16,12 +18,20 @@ function getProfileSuccess(response) {
 }
 
 function mapResponseToViewModel(response){
-    //self.firstName.set(response.content.toJSON()['FirstName']);
-    ProfileViewModel.set('firstName', response.content.toJSON()['FirstName']);
-    ProfileViewModel.set('lastName', response.content.toJSON()['LastName']);
     ProfileViewModel.set('username', response.content.toJSON()['Username']);
     ProfileViewModel.set('email', response.content.toJSON()['Email']);
-    ProfileViewModel.set('imageUrl', response.content.toJSON()['ImageUrl']);
+
+    var firstName = response.content.toJSON()['FirstName'] || '';
+    var lastName = response.content.toJSON()['FirstName'] || '';
+
+    ProfileViewModel.set('firstName', firstName);
+    ProfileViewModel.set('lastName', lastName);
+    var fullName = (ProfileViewModel.get('firstName') + ' ' + ProfileViewModel.get('lastName')).trim() || 'no name added'
+    ProfileViewModel.set('fullName', fullName);
+
+    var imageUrl = response.content.toJSON()['ImageUrl'] || '~/images/default-profile-img.jpg';
+    ProfileViewModel.set('imageUrl', imageUrl);
+
     //ProfileViewModel.set('location', response.content.toJSON()['Location']);
     ProfileViewModel.set('score', response.content.toJSON()['Score']);
     ProfileViewModel.set('createdChallenges', response.content.toJSON()['CreatedChallenges']);
@@ -29,8 +39,9 @@ function mapResponseToViewModel(response){
     ProfileViewModel.set('badges', response.content.toJSON()['Badges']);
 
     console.log('in model ' + response.content.toJSON()['Score']);
+    console.log(ProfileViewModel.get('email'));
 }
-
+//
 //var ProfileViewModel = (function (_super) {
 //    __extends(ProfileViewModel, _super);
 //var self;
@@ -211,22 +222,22 @@ function mapResponseToViewModel(response){
 //    //}
 //    return ProfileViewModel;
 //}(observable.Observable));
-//
-//accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError)
-//function getProfileSuccess(response) {
-//    mapResponseToViewModel(response);
-//    console.log('success', JSON.stringify(response));
-//}
-//
-//function mapResponseToViewModel(response){
-//    //ProfileViewModel.set('firstName', response.content.toJSON()['FirstName']);
-//    //ProfileViewModel.lastName = response.content.toJSON()['LastName'];
-//    //ProfileViewModel.username = response.content.toJSON()['Username'];
-//    ProfileViewModel.set('email', response.content.toJSON()['Email']);
-//    //ProfileViewModel.imageUrl = response.content.toJSON()['ImageUrl'];
-//    //ProfileViewModel.location = response.content.toJSON()['Location'];
-//    //ProfileViewModel.score = response.content.toJSON()['Score'];
-//
-//    //return ProfileViewModel;
-//}
+////
+////accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError)
+////function getProfileSuccess(response) {
+////    mapResponseToViewModel(response);
+////    console.log('success', JSON.stringify(response));
+////}
+////
+////function mapResponseToViewModel(response){
+////    //ProfileViewModel.set('firstName', response.content.toJSON()['FirstName']);
+////    //ProfileViewModel.lastName = response.content.toJSON()['LastName'];
+////    //ProfileViewModel.username = response.content.toJSON()['Username'];
+////    ProfileViewModel.set('email', response.content.toJSON()['Email']);
+////    //ProfileViewModel.imageUrl = response.content.toJSON()['ImageUrl'];
+////    //ProfileViewModel.location = response.content.toJSON()['Location'];
+////    //ProfileViewModel.score = response.content.toJSON()['Score'];
+////
+////    //return ProfileViewModel;
+////}
 exports.ProfileViewModel = ProfileViewModel;

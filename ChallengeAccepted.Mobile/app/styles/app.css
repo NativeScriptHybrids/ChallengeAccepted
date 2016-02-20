@@ -135,3 +135,34 @@ height: 150
 	background-color: green;
 }
 
+/*---profile---*/
+.profile-image{
+    height: 150;
+    /*background-size: 100%;*/
+    /*background-size: cover;*/
+    /*background-position: center center;*/
+    /*vertical-align: top;*/
+}
+
+.profile-label-title {
+    font-size: 20;
+    text-transform: uppercase;
+    color: #f89406;
+    padding: 0 20 0 20;
+}
+
+.profile-border{
+    border-color:#f89406;
+    border-width:1;
+    border-radius:10;
+    margin: 0 20 0 20;
+}
+
+.profile-label{
+    font-size: 20;
+    color: silver;
+    padding-bottom: 20;
+    horizontal-align: center;
+
+}
+

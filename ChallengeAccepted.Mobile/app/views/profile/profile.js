@@ -3,6 +3,8 @@
 var vmModule  = require("./../../view-models/profile-view-model");
 var helperModule = require("~/common/helper");
 var buttonModule = require("ui/button");
+var labelModule = require("ui/label");
+var layout = require("ui/layouts/grid-layout");
 var view = require("ui/core/view");
 var accountServiceModule = require("~/data/account-service");
 var AppSettings = require("application-settings");
@@ -15,9 +17,12 @@ var pageModules = (function() {
     var viewModel,
         topSegmentedBar,
         bottomSegmentedBar,
+        nameLabel,
+        grid,
         registerButton;
 
     var pageModules = {
+
 
     //    pageNavigatingTo: function(args) {
     //        var page = args.object;
@@ -33,15 +38,17 @@ var pageModules = (function() {
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
-            console.log('Navigation Context: ' + JSON.stringify(page.navigationContext));
+
             viewModel = vmModule.ProfileViewModel;
             page.bindingContext = viewModel;
 
+            console.log(JSON.stringify(viewModel))
             bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
             bottomSegmentedBar.selectedIndex = 2;
 
             topSegmentedBar = view.getViewById(page, 'profile-challenges-segmented-bar');
             topSegmentedBar.selectedIndex = 2;
+
             //registerButton = view.getViewById(page, 'register-button');
 
             //accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
