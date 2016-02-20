@@ -63,11 +63,11 @@ var LoginViewModel = (function (_super) {
         },
 
         toRegister: function() {
-            helperModule.navigateAnimated("./views/register/register");
+            helperModule.navigateAnimated("./views/account/register");
         },
 
         toMain: function() {
-            helperModule.navigateAnimated("./views/main/main");
+            helperModule.navigateAnimated("./views/main");
         }
     };
 

@@ -179,7 +179,7 @@ function mapResponseToViewModel(response){
 //        //},
 //        //
 //        //toMain: function () {
-//        //    helperModule.navigateAnimated("./views/main/main");
+//        //    helperModule.navigateAnimated("./views/main");
 //        //}
 //    };
 //

@@ -1,6 +1,6 @@
 'use strict';
 
-var vmModule = require("./../../view-models/main-view-model");
+var vmModule = require("./../view-models/main-view-model");
 var helperModule = require("~/common/helper");
 var view = require("ui/core/view");
 var accountServiceModule = require("~/data/account-service");
@@ -23,14 +23,14 @@ var pageModules = (function() {
             segmentedBar = view.getViewById(page, "main-segmented-bar");
             segmentedBar.selectedIndex = 1;
 
-            AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
-            AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
+            //AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
+            //AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
 
             attachEvents();
 
             // TODO: change to another page
             if (accountServiceModule.isAuthenticated()){
-                helperModule.navigate("./views/profile/profile");
+                helperModule.navigate("./views/account/profile");
             }
         }
     };
