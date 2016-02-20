@@ -51,7 +51,7 @@ namespace ChallengeAccepted.Api.Controllers
         public IHttpActionResult GetCompleted()
         {
             var challengeResponses = this.data.ChallengeResponses.All()
-                .Where(x => x.Status == ChallengeStatus.Completed)
+                .Where(x => x.ChallengeeId != this.CurrentUser.Id && x.Status == ChallengeStatus.Completed)
                 .ProjectTo<ChallengeResponseViewModel>();
 
             return this.Ok(challengeResponses);
