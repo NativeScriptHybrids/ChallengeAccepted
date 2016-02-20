@@ -42,7 +42,6 @@ var pageModules = (function() {
             viewModel = vmModule.ProfileViewModel;
             page.bindingContext = viewModel;
 
-            console.log(JSON.stringify(viewModel))
             bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
             bottomSegmentedBar.selectedIndex = 2;
 
@@ -58,20 +57,7 @@ var pageModules = (function() {
 
     function attachEvents(){
         segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
-        topSegmentedBar.on('propertyChange', function(){
-            if (topSegmentedBar.selectedIndex === 0){
-                console.log('active tab');
-               // viewModel.toMain();
-            }else if (topSegmentedBar.selectedIndex === 1){
-               // viewModel.toLogin();
-            }else if (topSegmentedBar.selectedIndex === 2){
-                // viewModel.toLogin();
-            }else if (topSegmentedBar.selectedIndex === 3){
-                // viewModel.toLogin();
-            }else if (topSegmentedBar.selectedIndex === 4){
-                // viewModel.toLogin();
-            }
-        });
+        segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
 
         //registerButton.on(buttonModule.Button.tapEvent, function (args) {
         //    viewModel.registerTap();

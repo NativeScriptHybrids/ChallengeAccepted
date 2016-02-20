@@ -32,15 +32,13 @@ var SegmentedBarPopulatorModule = (function() {
                 if (segmentedBar.selectedIndex === 0){
                     helperModule.navigate("./views/profile/my-active-challenges", {});
                 } else if (segmentedBar.selectedIndex === 1){
-                    helperModule.navigate("./views/profile/my-added-challenges");
+                    helperModule.navigate("./views/profile/my-done-challenges");
                 }else if (segmentedBar.selectedIndex === 2){
                     helperModule.navigate("./views/profile/profile");
                 }else if (segmentedBar.selectedIndex === 3){
-                    console.log('peek');
-                    helperModule.navigate("./views/challenge/my-badges");
+                    helperModule.navigate("./views/profile/my-added-challenges");
                 }else if (segmentedBar.selectedIndex === 4){
-                    accountServiceModule.logout();
-                    helperModule.navigate("./views/main");
+                    helperModule.navigate("./views/challenge/my-badges");
                 }
             });
         }

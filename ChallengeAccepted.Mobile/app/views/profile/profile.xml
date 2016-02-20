@@ -1,11 +1,11 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="pageNavigatingTo" loaded="pageLoaded">
     <Page.actionBar>
         <ActionBar class="action-bar" title="Register" android.icon="res://icon" android.iconVisibility="always">
             <!--<android>-->
                 <!--<NavigationButton icon="~/images/challenge-accepted.png" width="20"/>-->
             <!--</android>-->
             <ActionBar.actionItems>
-                <ActionItem icon="{{ 'res://dots-icon' }}"/>
+                <!--<ActionItem icon="{{ 'res://dots-icon' }}"/>-->
             </ActionBar.actionItems>
             <ActionBar.titleView>
                 <GridLayout horizontalAlignment="center">

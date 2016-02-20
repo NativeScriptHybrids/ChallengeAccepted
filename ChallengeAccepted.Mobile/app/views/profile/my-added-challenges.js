@@ -18,16 +18,20 @@ var pageModules = (function() {
         // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
-            viewModel = vmModule.AddChallengeModel;
+            viewModel = vmModule.MyAddedChallengesModel;
             page.bindingContext = viewModel;
 
-            bottomSegmentedBar = view.getViewById(page, 'profile-segmented-bar');
+            bottomSegmentedBar = view.getViewById(page, 'bottom-segmented-bar');
             bottomSegmentedBar.selectedIndex = 2;
 
-            topSegmentedBar = view.getViewById(page, 'profile-challenges-segmented-bar');
-            topSegmentedBar.selectedIndex = 2;
+            topSegmentedBar = view.getViewById(page, 'top-segmented-bar');
+            topSegmentedBar.selectedIndex = 3;
 
             attachEvents();
+        },
+
+        viewChallenge: function(args){
+            vmModule.viewChallenge(args);
         }
     };
 
@@ -39,5 +43,6 @@ var pageModules = (function() {
     return pageModules;
 })();
 
+exports.viewChallenge = pageModules.viewChallenge;
 exports.pageLoaded = pageModules.pageLoaded;
 

@@ -1,4 +1,5 @@
 var frameModule = require("ui/frame");
+var moment = require('moment');
 
 var HelperModule = (function() {
 
@@ -43,10 +44,23 @@ var HelperModule = (function() {
 
         handleHttpRequestError: function(response){
             console.log(response);
-            console.log(error);
             var errorMessage = response.content.toJSON()['error_description'];
             HelperModule.notify(errorMessage);
+        },
+
+        formatDateToShort: function (date) {
+            var shortDate = moment(date.toString()).format('MMMM Do YYYY, h:mm:ss a');
+            return shortDate;
+        },
+
+        formatDifficultyToEnum: function(difficultyNumber){
+            var difficulties = [
+                'Easy', 'Medium', 'Hard', 'Insane'
+            ];
+
+            return difficulties[difficultyNumber];
         }
+
     };
 
     return HelperModule;
@@ -56,3 +70,5 @@ exports.navigate = HelperModule.navigate;
 exports.navigateAnimated = HelperModule.navigateAnimated;
 exports.notify = HelperModule.notify;
 exports.handleHttpRequestError = HelperModule.handleHttpRequestError;
+exports.formatDateToShort = HelperModule.formatDateToShort;
+exports.formatDifficultyToEnum = HelperModule.formatDifficultyToEnum;

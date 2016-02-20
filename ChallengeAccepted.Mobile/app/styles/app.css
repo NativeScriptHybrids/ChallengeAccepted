@@ -163,6 +163,22 @@ height: 150
     color: silver;
     padding-bottom: 20;
     horizontal-align: center;
+}
 
+/*---my active challenges---*/
+
+.list-view-challenge-title{
+    font-size: 20;
+    color: #f89406;
+    padding-bottom: 5;
+    horizontal-align: center;
+}
+
+.list-view-challenge-deadline{
+    font-size: 12;
+    font-style: italic;
+    color:antiquewhite;
+    padding-bottom: 10;
+    horizontal-align: center;
 }
 

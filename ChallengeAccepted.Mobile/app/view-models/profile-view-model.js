@@ -5,15 +5,13 @@ var validationModule = require("~/common/validate");
 var accountServiceModule = require("~/data/account-service");
 var helperModule = require("~/common/helper");
 
-var ProfileViewModel = new observable.Observable({
-    'email': ''
-});
+var ProfileViewModel = new observable.Observable();
 
 accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
 
 function getProfileSuccess(response) {
     mapResponseToViewModel(response);
-    console.log('success', JSON.stringify(response));
+    //console.log('success', JSON.stringify(response));
     //console.log(JSON.stringify(self));
 }
 
@@ -38,8 +36,8 @@ function mapResponseToViewModel(response){
     ProfileViewModel.set('challengeResponses', response.content.toJSON()['ChallengeResponses']);
     ProfileViewModel.set('badges', response.content.toJSON()['Badges']);
 
-    console.log('in model ' + response.content.toJSON()['Score']);
-    console.log(ProfileViewModel.get('email'));
+    //console.log('in model ' + response.content.toJSON()['Score']);
+    //console.log(ProfileViewModel.get('email'));
 }
 //
 //var ProfileViewModel = (function (_super) {

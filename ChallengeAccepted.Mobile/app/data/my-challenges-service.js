@@ -7,47 +7,20 @@ var MyChallengesService = (function () {
 
     var MyChallengesService = {
 
-        getActiveChallenges: function register(registerViewModel, success, error) {
-            var actionUrl = 'api/Profile/Get';
+        getActiveChallenges: function register(success, error) {
+            var actionUrl = 'api/ChallengeResponse/GetCurrentUserActive';
 
-            var profile =  httpRequester.authGet(actionUrl, success, error);
-
-            var actionUrl = 'api/Account/Register';
             return httpRequester.authGet(actionUrl, success, error);
-            var actionUrl = 'api/Account/Register';
-            var content = "Email=" + registerViewModel.email + "&Password=" + registerViewModel.password + "&ConfirmPassword=" + registerViewModel.confirmPassword;
-            var headers = {
-                "Content-Type": "application/x-www-form-urlencoded"
-            };
-
-            return httpRequester.post(actionUrl, content, headers, success, error);
         },
 
-        login: function (loginViewModel, success, error) {
-            var actionUrl = 'Token';
-            var content = "grant_type=password&username=" + loginViewModel.email + "&password=" + loginViewModel.password;
-            var headers = {
-                "Content-Type": "application/x-www-form-urlencoded"
-            };
+        getCompletedChallenges: function (success, error) {
+            var actionUrl = 'api/ChallengeResponse/GetCurrentUserCompleted';
 
-            return httpRequester.post(actionUrl, content, headers, success, error);
+            return httpRequester.authGet(actionUrl, success, error);
         },
 
-        logout: function() {
-            AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
-            AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
-        },
-
-        isAuthenticated: function() {
-            if (AppSettings.getString(globalConstants.LocalStorageTokenKey)){
-                return true;
-            }
-
-            return false;
-        },
-
-        getProfile: function(success, error){
-            var actionUrl = 'api/Profile/Get';
+        getCreatedChallenges: function(success, error) {
+            var actionUrl = 'api/Challenge/GetCurrentUserCreated';
 
             return httpRequester.authGet(actionUrl, success, error);
         }
@@ -56,6 +29,6 @@ var MyChallengesService = (function () {
     return MyChallengesService;
 })();
 
-exports.register = MyChallengesService.register;
-exports.login = MyChallengesService.login;
-exports.logout = MyChallengesService.logout;
+exports.getActiveChallenges = MyChallengesService.getActiveChallenges;
+exports.getCompletedChallenges = MyChallengesService.getCompletedChallenges;
+exports.getCreatedChallenges = MyChallengesService.getCreatedChallenges;
