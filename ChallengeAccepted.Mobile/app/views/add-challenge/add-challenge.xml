@@ -1,0 +1,14 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+    <GridLayout rows="50, *" class="page-background">
+        <Button row="0" text="<- GO TO PROFILE" id="back-to-profile" tap="onBackToProfileBtnTap"/>
+        <GridLayout row="1" rows="auto, auto, auto, auto, auto, auto">
+            <TextField row="0" id="add-title" class="text-input" hint="Title"/>
+            <TextField row="1" id="add-image-url" class="text-input" hint="Image Url"/>
+            <TextField row="2" id="add-description" class="text-input" hint="Description"/>
+            <TextField row="3" id="add-rating" class="text-input" hint="Difficulty"/>
+            <TextField row="4" id="add-days-to-complete" class="text-input" hint="Days To Complete"/>
+            <Button row="5" text="Add Challenge" id="add-challenge-btn" tap="onAddBtnTap"/>
+
+        </GridLayout>      
+    </GridLayout>
+</Page>

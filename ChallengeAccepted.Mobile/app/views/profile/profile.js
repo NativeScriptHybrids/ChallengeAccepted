@@ -68,7 +68,7 @@ var pageModules = (function() {
 
         bottomSegmentedBar.on('propertyChange', function(){
             if (bottomSegmentedBar.selectedIndex === 0){ //Add
-                // viewModel.toMain();
+                helperModule.navigate("./views/add-challenge/add-challenge");
             }else if (bottomSegmentedBar.selectedIndex === 1){ //Pick
                 helperModule.navigate("./views/challenge/challenge-to-pick");
             }else if (bottomSegmentedBar.selectedIndex === 3){ //Profile
@@ -82,8 +82,7 @@ var pageModules = (function() {
         });
 
         //registerButton.on(buttonModule.Button.tapEvent, function (args) {
-        //    viewModel.registerTap();
-        //});
+        //    viewModel.registerTap        //});
     }
 
 //    function getProfileSuccess(response) {

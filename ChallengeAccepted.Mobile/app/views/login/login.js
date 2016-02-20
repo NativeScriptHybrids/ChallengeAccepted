@@ -48,7 +48,7 @@ var pageModules = (function() {
         });
     }
 
-    return pageModules;
+    return pageModules; 
 })();
 
 exports.pageLoaded = pageModules.pageLoaded;

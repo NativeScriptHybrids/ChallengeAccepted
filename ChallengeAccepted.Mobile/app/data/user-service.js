@@ -1,0 +1,29 @@
+var http = require("http");
+var httpRequester = require("~/data/http-requester");
+var AppSettings = require("application-settings");
+var globalConstants = require("~/common/global-constants");
+
+var userService = (function () {
+
+    var userService = {
+
+        addChallenge: function register(challenge, success, error) {
+            var actionUrl = 'api/Challenge/Add';
+            var content = JSON.stringify(challenge);
+            var headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
+            };
+
+            console.log(JSON.stringify(content));
+            console.log(JSON.stringify(headers));
+
+            return httpRequester.post(actionUrl, content, headers, success, error);
+        },
+    };
+
+    return userService;
+})();
+
+exports.addChallenge = userService.addChallenge;
+
