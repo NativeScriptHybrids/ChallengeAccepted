@@ -48,6 +48,16 @@ namespace ChallengeAccepted.Api.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetCompleted()
+        {
+            var challengeResponses = this.data.ChallengeResponses.All()
+                .Where(x => x.Status == ChallengeStatus.Completed)
+                .ProjectTo<ChallengeResponseViewModel>();
+
+            return this.Ok(challengeResponses);
+        }
+
+        [HttpGet]
         public IHttpActionResult GetCurrentUserCompleted()
         {
             var challengeResponses = this.data.ChallengeResponses.All()
