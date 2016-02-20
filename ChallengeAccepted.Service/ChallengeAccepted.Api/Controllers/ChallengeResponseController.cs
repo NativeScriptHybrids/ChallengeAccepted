@@ -48,6 +48,26 @@ namespace ChallengeAccepted.Api.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetCurrentUserCompleted()
+        {
+            var challengeResponses = this.data.ChallengeResponses.All()
+                .Where(x => x.ChallengeeId == this.CurrentUser.Id && x.Status == ChallengeStatus.Completed)
+                .ProjectTo<ChallengeResponseViewModel>();
+
+            return this.Ok(challengeResponses);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCurrentUserActive()
+        {
+            var challengeResponses = this.data.ChallengeResponses.All()
+                .Where(x => x.ChallengeeId == this.CurrentUser.Id && x.Status == ChallengeStatus.Active)
+                .ProjectTo<ChallengeResponseViewModel>();
+
+            return this.Ok(challengeResponses);
+        }
+
+        [HttpGet]
         public IHttpActionResult Details(int id)
         {
             var challengeResponse = this.data.ChallengeResponses.All()
@@ -85,7 +105,7 @@ namespace ChallengeAccepted.Api.Controllers
 
                 if (challengeResponse != null && challengeResponse.ChallengeeId == this.CurrentUser.Id)
                 {
-                    if (challengeResponse.Status != ChallengeStatus.InProgress)
+                    if (challengeResponse.Status != ChallengeStatus.Active)
                     {
                         return this.BadRequest("Failed challenge.");
                     }

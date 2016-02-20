@@ -189,7 +189,7 @@ namespace ChallengeAccepted.Api.Controllers
                 ChallengeId = id,
                 AssignedOn = DateTime.UtcNow,
                 ChallengeeId = this.CurrentUser.Id,
-                Status = ChallengeStatus.InProgress
+                Status = ChallengeStatus.Active
             };
 
             challengeResponse.Deadline = challengeResponse.AssignedOn.AddDays(challenge.DaysToComplete);
@@ -263,6 +263,17 @@ namespace ChallengeAccepted.Api.Controllers
 
             return this.BadRequest("The project couldn't be found.");
         }
+
+        [HttpGet]
+        public IHttpActionResult GetCurrentUserCreated()
+        {
+            var challenges = this.data.Challenges.All()
+                .Where(x => x.CreatorId == this.CurrentUser.Id)
+                .ProjectTo<ChallengeViewModel>();
+
+            return this.Ok(challenges);
+        }
+
 
         private IQueryable<int> GetChallengeIdsInResponses()
         {
