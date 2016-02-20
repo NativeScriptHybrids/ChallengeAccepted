@@ -35,6 +35,8 @@ namespace ChallengeAccepted.Models
 
         public string CreatorId { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public virtual User Creator { get; set; }
 
         public virtual ICollection<ChallengeResponse> AssignedChallenges

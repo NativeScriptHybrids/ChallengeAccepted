@@ -23,6 +23,8 @@ namespace ChallengeAccepted.Api.ViewModels.Challenge
         [Required]
         public int DaysToComplete { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public void CreateMappings(AutoMapper.IConfiguration configuration)
         {
             configuration.CreateMap<ChallengeAccepted.Models.Challenge, EditChallengeViewModel>()

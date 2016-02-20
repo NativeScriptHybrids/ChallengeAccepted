@@ -95,6 +95,7 @@ namespace ChallengeAccepted.Api.Controllers
                 Title = challenge.Title,
                 Description = challenge.Description,
                 Difficulty = challenge.Difficulty,
+                ImageUrl = challenge.ImageUrl,
                 DaysToComplete = challenge.DaysToComplete
             };
 
