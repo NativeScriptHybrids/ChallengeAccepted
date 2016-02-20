@@ -7,7 +7,17 @@ var userService = (function () {
 
     var userService = {
 
-        addChallenge: function register(challenge, success, error) {
+        getAllChallenges: function (success, error) {
+            var actionUrl = 'api/Challenge/Get';
+            var headers = {
+                "Content-Type": "application/json"
+            };
+
+            return httpRequester.get(actionUrl, headers, success, error);
+
+        },
+
+        addChallenge: function (challenge, success, error) {
             var actionUrl = 'api/Challenge/Add';
             var content = JSON.stringify(challenge);
             var headers = {
@@ -20,10 +30,22 @@ var userService = (function () {
 
             return httpRequester.post(actionUrl, content, headers, success, error);
         },
+
+        acceptChallenge: function (id, success, error) {
+            var actionUrl = '/api/Challenge/Accept/' + id;
+            var content = '';
+            var headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
+            };
+
+            return httpRequester.post(actionUrl, content, headers, success, error);
+        }
     };
 
     return userService;
 })();
 
 exports.addChallenge = userService.addChallenge;
+exports.acceptChallenge = userService.acceptChallenge;
 

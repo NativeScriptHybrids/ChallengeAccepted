@@ -53,6 +53,7 @@ var pageModules = (function() {
         segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
         topSegmentedBar.on('propertyChange', function(){
             if (topSegmentedBar.selectedIndex === 0){
+                console.log('active tab');
                // viewModel.toMain();
             }else if (topSegmentedBar.selectedIndex === 1){
                // viewModel.toLogin();
