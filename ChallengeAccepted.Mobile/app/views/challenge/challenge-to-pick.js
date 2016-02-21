@@ -7,6 +7,7 @@ var http = require("http");
 var imageSource = require("image-source");
 var userService = require("~/data/user-service");
 var stackLayout = require("ui/layouts/stack-layout");
+var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 
 var challengeModules = (function() {
 	var challengesResponse;
@@ -26,6 +27,8 @@ var challengeModules = (function() {
 		imageUrl,
 		description,
 		rating,
+        topSegmentedBar,
+        bottomSegmentedBar;
         previousDeltaX = 0;
 
 	var index = 0;
@@ -36,6 +39,12 @@ var challengeModules = (function() {
             var page = args.object;
             page.bindingContext = challenges;
 
+            bottomSegmentedBar = view.getViewById(page, 'bottom-segmented-bar');
+            bottomSegmentedBar.selectedIndex = 1;
+
+            topSegmentedBar = view.getViewById(page, 'top-segmented-bar');
+            topSegmentedBar.selectedIndex = 2;
+
             layout = view.getViewById(page, "challenge-stack");
             titleLabel = view.getViewById(page, "challenge-title");
             image = view.getViewById(page, "challenge-img");
@@ -43,35 +52,28 @@ var challengeModules = (function() {
             ratingLabel = view.getViewById(page, "challenge-rating");
 
         	var resp = http.getJSON("https://challengeaccepted.azurewebsites.net/api/challenge/get").then(function (r) {
-						    	//challengesResponse = JSON.stringify(r);
-						    	challengesResponse = r;
-                                console.log(JSON.stringify(challengesResponse));
+    		    	//challengesResponse = JSON.stringify(r);
+    		    	challengesResponse = r;
+                    console.log(JSON.stringify(challengesResponse));
 
-						    	console.log(r.length);
+    		    	console.log(r.length);
 
-	    	                    //acceptChallenge();
-                                panEvent();
-							}, function (e) {
-								console.log('Error getting challenges');
-							    console.log(e);
-							});
-        },
+                    //acceptChallenge();
+                    panEvent();
+    			}, function (e) {
+    				console.log('Error getting challenges');
+    			    console.log(e);
+    			}
+            );
 
-        onAcceptTap: function() {
-        	console.log('Current challenge id: ' + challengesResponse[currentIndex]["ChallengeId"]);
-            var currentChallengeId = challengesResponse[currentIndex]["ChallengeId"];
-
-            userService.acceptChallenge(currentChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
-        },
-
-        onDeclineTap: function() {
-        	console.log('Decline TAP');
-        	var i;
-        	changeContent();
-
-            //TODO: Implement not repeating challenge in one loop
+            attachEvents();
         }
     };
+
+    function attachEvents(){
+        segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
+        segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
+    }
 
     function panEvent() {
 

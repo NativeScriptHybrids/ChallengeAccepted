@@ -1,14 +1,37 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout id="challenge-stack">
-    <Label text="Elbow Challenge" id="challenge-title"/>
-	<Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFit" id="challenge-img" />
-	<Label text="Lick your elbow" id="challenge-description"/>
-	<Label text="Rating: " id="challenge-rating"/>
+	<GridLayout rows="auto, *, auto" class="page-background">
+	    <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
+	      <SegmentedBar.items>
+	        <SegmentedBarItem title="Active"/>
+	        <SegmentedBarItem title="Done"/>
+	        <SegmentedBarItem title="Edit"/>
+	        <SegmentedBarItem title="Added"/>
+	        <SegmentedBarItem title="Badges"/>
+	      </SegmentedBar.items>
+	    </SegmentedBar>
 
-	<GridLayout columns="*, *" rows="auto">
-		<Image col="0" row="0" horizontalAlignment="left" src="~/images/arrow_curved_red_left.png" id="left-arrow" class="arrow"/>
-		<Image col="1" row="0" horizontalAlignment="right" src="~/images/arrow_curved_green_right.png" id="right-arrow" class="arrow"/>
-  	</GridLayout>
+		<StackLayout row="1" id="challenge-stack">
+		    <Label text="Elbow Challenge" id="challenge-title"/>
+			<Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFit" id="challenge-img" />
+			<Label text="Lick your elbow" id="challenge-description"/>
+			<Label text="Rating: " id="challenge-rating"/>
 
-  </StackLayout>
+			<GridLayout columns="*, *" rows="auto">
+				<Image col="0" row="0" horizontalAlignment="left" src="~/images/arrow_curved_red_left.png" id="left-arrow" class="arrow"/>
+				<Image col="1" row="0" horizontalAlignment="right" src="~/images/arrow_curved_green_right.png" id="right-arrow" class="arrow"/>
+		  	</GridLayout>
+		</StackLayout>
+
+        <SegmentedBar row="2" id="bottom-segmented-bar" class="main-page-segmented-bar">
+          <SegmentedBar.items>
+            <SegmentedBarItem title="Add"/>
+            <SegmentedBarItem title="Pick"/>
+            <SegmentedBarItem title="Profile"/>
+            <SegmentedBarItem title="Rate"/>
+            <SegmentedBarItem title="Logout"/>
+          </SegmentedBar.items>
+        </SegmentedBar>
+
+    </GridLayout>
+
 </Page>
