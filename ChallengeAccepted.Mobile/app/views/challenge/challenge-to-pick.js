@@ -28,7 +28,7 @@ var challengeModules = (function() {
 		description,
 		rating,
         topSegmentedBar,
-        bottomSegmentedBar;
+        bottomSegmentedBar,
         previousDeltaX = 0;
 
 	var index = 0;
