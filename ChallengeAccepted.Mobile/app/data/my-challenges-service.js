@@ -23,6 +23,18 @@ var MyChallengesService = (function () {
             var actionUrl = 'api/Challenge/GetCurrentUserCreated';
 
             return httpRequester.authGet(actionUrl, success, error);
+        },
+
+        getAddedChallengeDetails: function(id, success, error) {
+            var actionUrl = 'api/Challenge/Details/' + id;
+
+            return httpRequester.authGet(actionUrl, success, error);
+        },
+
+        getChallengeResponseDetails: function(id, success, error) {
+            var actionUrl = 'api/ChallengeResponse/Details/' + id;
+
+            return httpRequester.authGet(actionUrl, success, error);
         }
     };
 
@@ -32,3 +44,5 @@ var MyChallengesService = (function () {
 exports.getActiveChallenges = MyChallengesService.getActiveChallenges;
 exports.getCompletedChallenges = MyChallengesService.getCompletedChallenges;
 exports.getCreatedChallenges = MyChallengesService.getCreatedChallenges;
+exports.getAddedChallengeDetails = MyChallengesService.getAddedChallengeDetails;
+exports.getChallengeResponseDetails = MyChallengesService.getChallengeResponseDetails;

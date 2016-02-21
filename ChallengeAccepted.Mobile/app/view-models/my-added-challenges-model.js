@@ -7,10 +7,11 @@ var moment = require('moment');
 
 var MyAddedChallengesModel = new observable.Observable();
 
+var responseContent;
 myChallengesService.getCreatedChallenges(getAddedChallengesSuccess, helperModule.handleHttpRequestError);
 
 function getAddedChallengesSuccess(response) {
-    var responseContent =  response.content.toJSON();
+    responseContent =  response.content.toJSON();
     for (var i = 0; i < responseContent.length; i++) {
         responseContent[i]["Difficulty"] = helperModule.formatDifficultyToEnum(parseInt(responseContent[i]["Difficulty"])).toString();
     }
@@ -18,8 +19,8 @@ function getAddedChallengesSuccess(response) {
 }
 
 function viewChallenge(args){
-    console.log(args.index);
-    //TODO: navigate to details page with current index as data;
+    var id = responseContent[args.index]['ChallengeId'];
+    helperModule.navigate("./views/profile/challenge-details", {'id' : id});
 };
 
 exports.MyAddedChallengesModel = MyAddedChallengesModel;

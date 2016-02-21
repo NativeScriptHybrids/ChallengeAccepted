@@ -6,11 +6,12 @@ var helperModule = require("~/common/helper");
 var moment = require('moment');
 
 var MyDoneChallengesModel = new observable.Observable();
+var responseContent;
 
 myChallengesService.getCompletedChallenges(getDoneChallengesSuccess, helperModule.handleHttpRequestError);
 
 function getDoneChallengesSuccess(response) {
-    var responseContent =  response.content.toJSON();
+    responseContent =  response.content.toJSON();
 
     //if (responseContent.length === 0){
     //    responseContent = [{
@@ -27,10 +28,9 @@ function getDoneChallengesSuccess(response) {
 }
 
 function viewChallenge(args){
-    console.log(args.index);
-    //TODO: navigate to details page with current index as data;
+    var id = responseContent[args.index]['Id'];
+    helperModule.navigate("./views/profile/challenge-done-details", {'id' : id });
 };
 
 exports.MyDoneChallengesModel = MyDoneChallengesModel;
 exports.viewChallenge = viewChallenge;
-

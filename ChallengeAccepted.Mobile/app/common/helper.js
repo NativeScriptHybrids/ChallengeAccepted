@@ -59,6 +59,14 @@ var HelperModule = (function() {
             ];
 
             return difficulties[difficultyNumber];
+        },
+
+        formatStatusToEnum: function(statusNumber){
+            var difficulties = [
+                'Active', 'Completed', 'Failed', 'Declined'
+            ];
+
+            return difficulties[statusNumber];
         }
 
     };
@@ -72,3 +80,4 @@ exports.notify = HelperModule.notify;
 exports.handleHttpRequestError = HelperModule.handleHttpRequestError;
 exports.formatDateToShort = HelperModule.formatDateToShort;
 exports.formatDifficultyToEnum = HelperModule.formatDifficultyToEnum;
+exports.formatStatusToEnum = HelperModule.formatStatusToEnum;

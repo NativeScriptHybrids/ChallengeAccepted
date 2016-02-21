@@ -25,7 +25,7 @@ namespace ChallengeAccepted.Api.ViewModels.AssignedChallenge
 
         public ChallengeStatus Status { get; set; }
 
-        public int Score { get; set; }
+        public int Rating { get; set; }
 
        // public Image Image { get; set; }
 

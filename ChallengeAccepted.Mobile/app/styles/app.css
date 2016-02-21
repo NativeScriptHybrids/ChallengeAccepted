@@ -159,8 +159,8 @@ height: 150
 }
 
 .profile-label{
-    font-size: 20;
-    color: silver;
+    font-size: 15;
+    color: antiquewhite;
     padding-bottom: 20;
     horizontal-align: center;
 }
@@ -182,3 +182,82 @@ height: 150
     horizontal-align: center;
 }
 
+/*---challenge-details---*/
+
+.challenge-details-title{
+    font-size: 25;
+    color: #f89406;
+    padding-bottom: 10;
+    margin-top: 10;
+    horizontal-align: center;
+}
+
+.challenge-details-description {
+    font-size: 18;
+    horizontal-align: center;
+    padding-bottom: 10;
+    color:antiquewhite;
+}
+
+.challenge-response-details-title {
+    font-size: 25;
+    color: #f89406;
+    padding-bottom: 0;
+    margin-top: 10;
+    horizontal-align: center;
+}
+
+.challenge-response-details-description {
+    font-size: 18;
+    horizontal-align: center;
+    padding-bottom: 15;
+    color:antiquewhite;
+}
+
+.challenge-response-details-difficulty,
+.challenge-response-details-creator,
+.challenge-response-details-status{
+    font-size: 14;
+    font-style: italic;
+    color:antiquewhite;
+    padding-bottom: 10;
+    horizontal-align: center;
+}
+.challenge-details-difficulty,
+.challenge-details-days-to-complete,
+ {
+    font-size: 14;
+    font-style: italic;
+    color:antiquewhite;
+    padding-bottom: 5;
+    margin-left: 5;
+    horizontal-align: center;
+}
+
+.challenge-response-details-assigned-on {
+    font-size: 14;
+    color:antiquewhite;
+    padding-bottom: 10;
+    horizontal-align: center;
+}
+
+.challenge-response-details-deadline {
+    color: antiquewhite;
+    font-size: 14;
+    padding-bottom: 10;
+    horizontal-align: center;
+}
+
+.add-image-button {
+    margin-top: 10;
+    background-color: indianred;
+    color: black;
+    width: 150;
+}
+
+.details-label-title {
+    font-size: 15;
+    text-transform: uppercase;
+    color: #f89406;
+    padding: 0 20 0 20;
+}
