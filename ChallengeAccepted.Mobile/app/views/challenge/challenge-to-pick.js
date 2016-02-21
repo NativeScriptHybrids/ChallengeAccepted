@@ -114,8 +114,8 @@ var challengeModules = (function() {
         title = challengesResponse[currentIndex]["Title"];        
         titleLabel.text = title;
 
-        // imageUrl = response[currentIndex]["ImageUrl"]
-        // image.imageSource = imageSource.fromUrl("https://www.google.com/images/errors/logo_sm_2.png")
+        imageUrl = challengesResponse[currentIndex]["ImageUrl"]
+        image.src = imageUrl;
 
         description = challengesResponse[currentIndex]["Description"];
         descriptionLabel.text = description;
