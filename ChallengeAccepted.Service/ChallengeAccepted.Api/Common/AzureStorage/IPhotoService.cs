@@ -9,6 +9,6 @@ namespace ChallengeAccepted.Api.Common.AzureStorage
 {
     public interface IPhotoService
     {
-        Task<string> UploadPhotoAsync(HttpPostedFile photoToUpload);
+        Task<string> UploadPhotoAsync(HttpPostedFileBase photoToUpload);
     }
 }

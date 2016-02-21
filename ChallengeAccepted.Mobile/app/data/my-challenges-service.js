@@ -35,6 +35,12 @@ var MyChallengesService = (function () {
             var actionUrl = 'api/ChallengeResponse/Details/' + id;
 
             return httpRequester.authGet(actionUrl, success, error);
+        },
+
+        uploadImage: function(photo, success, error) {
+            var actionUrl = 'api/Image/UploadPhoto';
+
+            return httpRequester.authPost(actionUrl, photo, success, error);
         }
     };
 
@@ -46,3 +52,4 @@ exports.getCompletedChallenges = MyChallengesService.getCompletedChallenges;
 exports.getCreatedChallenges = MyChallengesService.getCreatedChallenges;
 exports.getAddedChallengeDetails = MyChallengesService.getAddedChallengeDetails;
 exports.getChallengeResponseDetails = MyChallengesService.getChallengeResponseDetails;
+exports.uploadImage = MyChallengesService.uploadImage;
