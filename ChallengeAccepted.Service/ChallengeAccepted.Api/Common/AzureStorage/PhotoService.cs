@@ -41,7 +41,7 @@ namespace ChallengeAccepted.Api.Common.AzureStorage
             }
         }
 
-        async public Task<string> UploadPhotoAsync(HttpPostedFile photoToUpload)
+        async public Task<string> UploadPhotoAsync(HttpPostedFileBase photoToUpload)
         {
             if (photoToUpload == null || photoToUpload.ContentLength == 0)
             {

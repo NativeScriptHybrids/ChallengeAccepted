@@ -37,7 +37,7 @@ namespace ChallengeAccepted.Api.Controllers
         //}
 
         [HttpPost]
-        public async Task<IHttpActionResult> UploadPhoto(HttpPostedFile photo)
+        public async Task<IHttpActionResult> UploadPhoto(HttpPostedFileBase photo)
         {
             string url = await photoService.UploadPhotoAsync(photo);
 

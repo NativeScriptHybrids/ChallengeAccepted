@@ -63,21 +63,21 @@ namespace ChallengeAccepted.Api.Controllers
             return this.BadRequest("Couldn't edit challenge.");
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> UploadPhoto()
-        {
-            if (HttpContext.Current.Request.Files.AllKeys.Any())
-            {
-                var httpPostedFile = HttpContext.Current.Request.Files["photo"];
+        //[HttpPost]
+        //public async Task<IHttpActionResult> UploadPhoto()
+        //{
+        //    if (HttpContext.Current.Request.Files.AllKeys.Any())
+        //    {
+        //        var httpPostedFile = HttpContext.Current.Request.Files["photo"];
 
-                string url = await photoService.UploadPhotoAsync(httpPostedFile);
+        //        string url = await photoService.UploadPhotoAsync(httpPostedFile);
                 
-                this.CurrentUser.ImageUrl = url;
+        //        this.CurrentUser.ImageUrl = url;
 
-                return this.Ok(url);
-            }
+        //        return this.Ok(url);
+        //    }
 
-            return this.BadRequest("The image couldn't be uploaded.");
-        }
+        //    return this.BadRequest("The image couldn't be uploaded.");
+        //}
     }
 }

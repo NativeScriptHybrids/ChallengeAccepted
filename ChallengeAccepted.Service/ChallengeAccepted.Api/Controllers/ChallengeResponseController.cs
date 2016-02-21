@@ -121,14 +121,14 @@ namespace ChallengeAccepted.Api.Controllers
                         return this.BadRequest("Failed challenge.");
                     }
 
-                    if (HttpContext.Current.Request.Files.AllKeys.Any())
-                    {
-                        var httpPostedFile = HttpContext.Current.Request.Files["photo"];
+                    //if (HttpContext.Current.Request.Files.AllKeys.Any())
+                    //{
+                    //    var httpPostedFile = HttpContext.Current.Request.Files["photo"];
 
-                        string url = await photoService.UploadPhotoAsync(httpPostedFile);
+                    //    string url = await photoService.UploadPhotoAsync(httpPostedFile);
 
-                        model.ImageUrl = url;
-                    }
+                    //    model.ImageUrl = url;
+                    //}
 
                     if (string.IsNullOrEmpty(model.ImageUrl))
                     {
