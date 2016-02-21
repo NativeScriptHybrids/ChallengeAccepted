@@ -261,3 +261,10 @@ height: 150
     color: #f89406;
     padding: 0 20 0 20;
 }
+
+/*---badges---*/
+
+.badge-image{
+    margin-left: 10;
+    margin-right:10
+}

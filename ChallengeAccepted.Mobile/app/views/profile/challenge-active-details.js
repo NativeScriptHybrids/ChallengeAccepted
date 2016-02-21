@@ -9,6 +9,7 @@ var myChallengesService = require("~/data/my-challenges-service");
 var helperModule = require("~/common/helper");
 var observable = require("data/observable");
 var cameraModule = require("camera");
+var imageSource = require("image-source");
 
 var pageModules = (function() {
 
@@ -61,10 +62,17 @@ var pageModules = (function() {
                 console.log("Result is an image source instance");
                // var image = new imageModule.Image();
                 imageView.imageSource = photo;
+                var imageFile = imageView.imageSource.toBase64String('.jpg', 100);
+
+                var file = {
+                    Filename: 'test' + ".jpg",
+                    ContentType: "image/jpeg",
+                    base64: imageFile
+                };
+
                 console.log(JSON.stringify(photo));
-                console.log(photo);
-                myChallengesService.uploadImage(photo, function(result){
-                    console.log(JSON.stringify(result));
+                myChallengesService.uploadImage(file, function(result){
+                    console.log('result ' + JSON.stringify(result));
                     console.log('image uploaded');
                 }, function(error){
                     console.log(JSON.stringify(error) + 'error');

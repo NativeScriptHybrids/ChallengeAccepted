@@ -38,7 +38,7 @@ var SegmentedBarPopulatorModule = (function() {
                 }else if (segmentedBar.selectedIndex === 3){
                     helperModule.navigate("./views/profile/my-added-challenges");
                 }else if (segmentedBar.selectedIndex === 4){
-                    helperModule.navigate("./views/challenge/my-badges");
+                    helperModule.navigate("./views/profile/my-badges");
                 }
             });
         }

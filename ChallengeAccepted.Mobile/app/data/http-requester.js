@@ -69,6 +69,17 @@ var HttpRequester = (function () {
             };
 
             return makePostRequest(actionUrl, 'POST', content, headers, success, error);
+        },
+
+        authPostImage: function(actionUrl, content, success, error){
+            var headers = {
+                "Content-Type": "image/jpeg",
+                "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
+            };
+
+            console.log(JSON.stringify(content));
+
+            return makePostRequest(actionUrl, 'POST', content, headers, success, error);
         }
     };
 
@@ -79,3 +90,4 @@ exports.get = HttpRequester.get;
 exports.post = HttpRequester.post;
 exports.authGet = HttpRequester.authGet;
 exports.authPost = HttpRequester.authPost;
+exports.authPostImage = HttpRequester.authPostImage;

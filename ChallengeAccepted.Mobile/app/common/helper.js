@@ -47,8 +47,8 @@ var HelperModule = (function() {
         },
 
         handleHttpRequestError: function(response){
-            console.log(response);
-            var errorMessage = response.content.toJSON()['error_description'];
+            console.log(JSON.stringify(response));
+            var errorMessage = response.content.toJSON()['error_description'] || response.content.toJSON()['Message'] ;
             HelperModule.notify(errorMessage);
         },
 

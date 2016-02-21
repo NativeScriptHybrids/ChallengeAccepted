@@ -40,7 +40,7 @@ var MyChallengesService = (function () {
         uploadImage: function(photo, success, error) {
             var actionUrl = 'api/Image/UploadPhoto';
 
-            return httpRequester.authPost(actionUrl, photo, success, error);
+            return httpRequester.authPostImage(actionUrl, photo, success, error);
         }
     };
 

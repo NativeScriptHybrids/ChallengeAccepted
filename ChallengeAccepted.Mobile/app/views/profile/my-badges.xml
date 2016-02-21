@@ -1,18 +1,51 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gv="nativescript-grid-view" loaded="pageLoaded">
   <Page.actionBar>
-    <ActionBar class="main-action-bar">
+    <ActionBar class="action-bar" title="Badges" android.icon="res://icon" android.iconVisibility="always">
+      <!--<android>-->
+      <!--<NavigationButton icon="~/images/challenge-accepted.png" width="20"/>-->
+      <!--</android>-->
       <ActionBar.actionItems>
-        <ActionItem icon="{{ 'res://dots-icon' }}"/>
+        <!--<ActionItem icon="{{ 'res://dots-icon' }}"/>-->
       </ActionBar.actionItems>
       <ActionBar.titleView>
         <GridLayout horizontalAlignment="center">
-          <Label horizontalAlignment="center" text="Badges" class="GoudySto title" />
+          <Label horizontalAlignment="center" text="My Badges" class="GoudySto title"
+                 android:margin="0 0 0 -10"/>
         </GridLayout>
       </ActionBar.titleView>
     </ActionBar>
   </Page.actionBar>
   <GridLayout rows="auto, auto, *" class="page-background">
-      <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
+
+    <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
+      <SegmentedBar.items>
+        <SegmentedBarItem title="Active"/>
+        <SegmentedBarItem title="Done"/>
+        <SegmentedBarItem title="Edit"/>
+        <SegmentedBarItem title="Added"/>
+        <SegmentedBarItem title="Badges"/>
+      </SegmentedBar.items>
+    </SegmentedBar>
+
+    <GridLayout id="profile-info-grid" row="2" rows="10, *, auto">
+      <gv:GridView items="{{ myBadges }}" row="1" id="badges-grid-view">
+        <gv:GridView.itemTemplate>
+          <GridLayout rows="100, auto">
+            <Image id="{{ Id }}" class="badge-image" src="{{ ImageUrl }}" row="0" doubleTap="onBadgeImageDoubleTap" tap="getHint" />
+          </GridLayout>
+        </gv:GridView.itemTemplate>
+      </gv:GridView>
+      <!--<ListView items="{{ myBadges }}" itemTap="viewChallenge" row="1">-->
+        <!--<ListView.itemTemplate>-->
+          <!--<StackLayout class="list-view-item">-->
+            <!--<Image class="profile-image" src="{{ ImageUrl }}" />-->
+            <!--<Label text="{{ Name }}" textWrap="true" class="list-view-challenge-title" />-->
+          <!--</StackLayout>-->
+        <!--</ListView.itemTemplate>-->
+      <!--</ListView>-->
+
+
+      <GridLayout row="1" rows="auto, auto" verticalAlignment="bottom">
         <SegmentedBar row="1" id="bottom-segmented-bar" class="main-page-segmented-bar">
           <SegmentedBar.items>
             <SegmentedBarItem title="Add"/>
@@ -22,7 +55,9 @@
             <SegmentedBarItem title="Logout"/>
           </SegmentedBar.items>
         </SegmentedBar>
+      </GridLayout>
     </GridLayout>
+
     <AbsoluteLayout cssClass="activity-indicator" row="3">
       <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
     </AbsoluteLayout>
