@@ -29,6 +29,7 @@
         </SegmentedBar>
 
         <GridLayout id="profile-info-grid" row="1" rows="auto, auto, auto, auto, auto, auto, *">
+            <Image row="0" id="challenge-imageUrl" class="profile-image" stretch="aspectFill"/>
             <StackLayout row="1">
                 <Label id="challenge-title" textWrap="true" class="challenge-response-details-title"/>
                 <Label id="challenge-creator" textWrap="true" class="challenge-response-details-creator"/>

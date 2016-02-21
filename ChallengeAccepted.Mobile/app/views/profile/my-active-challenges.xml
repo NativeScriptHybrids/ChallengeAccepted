@@ -27,7 +27,7 @@
       </SegmentedBar.items>
     </SegmentedBar>
 
-    <GridLayout id="profile-info-grid" row="2" rows="10, auto, auto, auto, auto, auto, *">
+    <GridLayout id="profile-info-grid" row="2" rows="10, *, auto">
       <ListView items="{{ activeChallenges }}" itemTap="viewChallenge" row="1">
         <ListView.itemTemplate>
           <StackLayout class="list-view-item">
@@ -39,7 +39,7 @@
       </ListView>
 
 
-      <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
+      <GridLayout row="2" rows="auto, auto" verticalAlignment="bottom">
         <SegmentedBar row="1" id="bottom-segmented-bar" class="main-page-segmented-bar">
           <SegmentedBar.items>
             <SegmentedBarItem title="Add"/>

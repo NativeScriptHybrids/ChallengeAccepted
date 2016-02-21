@@ -8,6 +8,7 @@ var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 var myChallengesService = require("~/data/my-challenges-service");
 var helperModule = require("~/common/helper");
 var observable = require("data/observable");
+var cameraModule = require("camera");
 
 var pageModules = (function() {
 
@@ -20,7 +21,8 @@ var pageModules = (function() {
         creatorLabel,
         dateStarted,
         deadlineLabel,
-        statusLabel;
+        statusLabel,
+    imageView;
 
     var pageModules = {
 
@@ -36,6 +38,7 @@ var pageModules = (function() {
             dateStarted = view.getViewById(page, "challenge-assigned-on");
             deadlineLabel = view.getViewById(page, "challenge-deadline");
             statusLabel = view.getViewById(page, "challenge-status");
+            imageView = view.getViewById(page, "challenge-imageUrl");
 
             myChallengesService.getChallengeResponseDetails(id, getAddedChallengesSuccess, helperModule.handleHttpRequestError);
 
@@ -53,7 +56,21 @@ var pageModules = (function() {
         },
 
         onAddPicTap: function(args){
+            console.log('in camera');
+            cameraModule.takePicture().then(function(photo) {
+                console.log("Result is an image source instance");
+               // var image = new imageModule.Image();
+                imageView.imageSource = photo;
+                console.log(JSON.stringify(photo));
+                console.log(photo);
+                myChallengesService.uploadImage(photo, function(result){
+                    console.log(JSON.stringify(result));
+                    console.log('image uploaded');
+                }, function(error){
+                    console.log(JSON.stringify(error) + 'error');
+                });
 
+            });
         }
     };
 
