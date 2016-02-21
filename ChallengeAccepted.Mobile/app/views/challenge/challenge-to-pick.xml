@@ -6,8 +6,8 @@
 	<Label text="Rating: " id="challenge-rating"/>
 
 	<GridLayout columns="*, *" rows="auto">
-		<Button text="Decline" col="0" row="0"  horizontalAlignment="stretch" tap="onDeclineTap" class="pick-btn decline"/>
-		<Button text="Accept" col="1" row="0" horizontalAlignment="stretch" tap="onAcceptTap" class="pick-btn accept"/>
+		<Image col="0" row="0" horizontalAlignment="left" src="~/images/arrow_curved_red_left.png" id="left-arrow" class="arrow"/>
+		<Image col="1" row="0" horizontalAlignment="right" src="~/images/arrow_curved_green_right.png" id="right-arrow" class="arrow"/>
   	</GridLayout>
 
   </StackLayout>

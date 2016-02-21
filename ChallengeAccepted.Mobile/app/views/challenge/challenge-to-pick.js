@@ -6,7 +6,7 @@ var frameModule = require("ui/frame");
 var http = require("http");
 var imageSource = require("image-source");
 var userService = require("~/data/user-service");
-
+var stackLayout = require("ui/layouts/stack-layout");
 
 var challengeModules = (function() {
 	var challengesResponse;
@@ -16,6 +16,7 @@ var challengeModules = (function() {
 	});
 
 	var topmost,
+        layout,
 		titleLabel,
 		image,
 		descriptionLabel,
@@ -24,7 +25,8 @@ var challengeModules = (function() {
 		title,
 		imageUrl,
 		description,
-		rating;
+		rating,
+        previousDeltaX = 0;
 
 	var index = 0;
 
@@ -34,12 +36,11 @@ var challengeModules = (function() {
             var page = args.object;
             page.bindingContext = challenges;
 
+            layout = view.getViewById(page, "challenge-stack");
             titleLabel = view.getViewById(page, "challenge-title");
             image = view.getViewById(page, "challenge-img");
             descriptionLabel = view.getViewById(page, "challenge-description");
             ratingLabel = view.getViewById(page, "challenge-rating");
-
-
 
         	var resp = http.getJSON("https://challengeaccepted.azurewebsites.net/api/challenge/get").then(function (r) {
 						    	//challengesResponse = JSON.stringify(r);
@@ -48,7 +49,8 @@ var challengeModules = (function() {
 
 						    	console.log(r.length);
 
-	    	                    //changeContent();
+	    	                    //acceptChallenge();
+                                panEvent();
 							}, function (e) {
 								console.log('Error getting challenges');
 							    console.log(e);
@@ -71,6 +73,41 @@ var challengeModules = (function() {
         }
     };
 
+    function panEvent() {
+
+        layout.on('pan', function(args) {
+
+            if (args.deltaX < -150 && previousDeltaX >= -150) {
+
+                declineChallenge();
+                previousDeltaX = args.deltaX;
+
+                return;
+            }
+
+            if (args.deltaX > 150 && previousDeltaX <= 150) {
+
+                acceptChallenge();
+                previousDeltaX = args.deltaX;
+
+                return;                
+            }
+
+            previousDeltaX = args.deltaX;
+        });
+    }
+
+    function acceptChallenge() {
+        console.log('Current challenge id: ' + challengesResponse[currentIndex]["ChallengeId"]);
+        var currentChallengeId = challengesResponse[currentIndex]["ChallengeId"];
+
+        userService.acceptChallenge(currentChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
+    }
+
+    function declineChallenge() {
+        changeContent();
+    }
+
     function changeContent() {
     	currentIndex = Math.floor(Math.random() * (challengesResponse.length - 1));
 
@@ -91,6 +128,7 @@ var challengeModules = (function() {
         console.log('Index: ' + index + ' *** Title: ' + title);
         console.log('-----------------');
         index++;
+
     }
 
     function acceptSuccess() {
