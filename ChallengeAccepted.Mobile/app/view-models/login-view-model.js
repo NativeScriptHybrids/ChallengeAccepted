@@ -49,13 +49,13 @@ var LoginViewModel = (function (_super) {
             var self = this;
             var isEmailValid = validationModule.isValidEmail(self.email);
             if (!isEmailValid) {
-                alert('The email is incorrect.');
+                helperModule.notify('The email is incorrect.');
                 return;
             }
 
             var isPasswordValid = validationModule.isValidPassword(self.password);
             if (!isPasswordValid) {
-                alert('The password is incorrect.');
+                helperModule.notify('The password is incorrect.');
                 return;
             }
 

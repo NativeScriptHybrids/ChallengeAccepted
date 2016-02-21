@@ -81,19 +81,19 @@ var RegisterViewModel = (function (_super) {
             var self = this;
             var isEmailValid = validationModule.isValidEmail(self.email);
             if (!isEmailValid) {
-                alert('The email is incorrect.');
+                helperModule.notify('The email is incorrect.');
                 return;
             }
 
             var isPasswordValid = validationModule.isValidPassword(self.password);
             var isConfirmPasswordValid = validationModule.isValidPassword(self.confirmPassword);
             if (!isPasswordValid || !isConfirmPasswordValid) {
-                alert('The password is incorrect.');
+                helperModule.notify('The password is incorrect.');
                 return;
             }
 
             if (!validationModule.passwordsMatch(self.password, self.confirmPassword)) {
-                alert('The password and confirmation password do not match.');
+                helperModule.notify('The password and confirmation password do not match.');
                 return;
             }
 

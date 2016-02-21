@@ -1,5 +1,6 @@
 var frameModule = require("ui/frame");
 var moment = require('moment');
+var Toast = require("nativescript-toast");
 
 var HelperModule = (function() {
 
@@ -38,8 +39,11 @@ var HelperModule = (function() {
             topmost.navigate(navigationEntry);
         },
 
+
         notify: function(message){
-            alert(message);
+            var toast = Toast.makeText(message);
+            toast.show();
+            //alert(message);
         },
 
         handleHttpRequestError: function(response){
