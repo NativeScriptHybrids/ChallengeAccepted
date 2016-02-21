@@ -82,7 +82,8 @@ namespace ChallengeAccepted.Api.Controllers
         {
             var challengeResponse = this.data.ChallengeResponses.All()
                 .Where(x => x.Id == id)
-                .ProjectTo<ChallengeResponseViewModel>();
+                .ProjectTo<ChallengeResponseViewModel>()
+                .FirstOrDefault();
 
             return this.Ok(challengeResponse);
         }
