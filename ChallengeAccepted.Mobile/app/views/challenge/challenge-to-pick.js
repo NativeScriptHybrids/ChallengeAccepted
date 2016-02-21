@@ -28,8 +28,11 @@ var challengeModules = (function() {
 		description,
 		rating,
         topSegmentedBar,
-        bottomSegmentedBar;
-        previousDeltaX = 0;
+        bottomSegmentedBar,
+        previousDeltaX = 0,
+        indexes = [],
+        passedChallenges = [],
+        notPassedChallenges = [];
 
 	var index = 0;
 
@@ -54,11 +57,18 @@ var challengeModules = (function() {
         	var resp = http.getJSON("https://challengeaccepted.azurewebsites.net/api/challenge/get").then(function (r) {
     		    	//challengesResponse = JSON.stringify(r);
     		    	challengesResponse = r;
-                    console.log(JSON.stringify(challengesResponse));
+                    //console.log(JSON.stringify(challengesResponse));
+    		    	console.log('Length: ' + challengesResponse.length);
 
-    		    	console.log(r.length);
+                    indexes = challengesResponse.map(function(obj) {
+                        return obj["ChallengeId"];
+                    });
+                    
+                    notPassedChallenges = indexes.slice(0);
 
-                    //acceptChallenge();
+                    console.log('Indexes: [' + indexes.join(',') + ']');
+                    console.log('Not passed: [' + notPassedChallenges.join(',') + ']');
+                    
                     panEvent();
     			}, function (e) {
     				console.log('Error getting challenges');
@@ -111,7 +121,14 @@ var challengeModules = (function() {
     }
 
     function changeContent() {
-    	currentIndex = Math.floor(Math.random() * (challengesResponse.length - 1));
+        if (notPassedChallenges.length === 0) {
+            notPassedChallenges = passedChallenges.slice(0);
+            passedChallenges = []
+        }
+
+    	currentIndex = Math.floor(Math.random() * (notPassedChallenges.length - 1));
+        passedChallenges.push(notPassedChallenges[currentIndex]);
+        notPassedChallenges.splice(currentIndex, 1);
 
         title = challengesResponse[currentIndex]["Title"];        
         titleLabel.text = title;
@@ -125,12 +142,12 @@ var challengeModules = (function() {
         rating = challengesResponse[currentIndex]["Difficulty"];
         ratingLabel.text = 'Rating: ' + rating;
 
-        console.log('CurrentIndex: ' + currentIndex);
         console.log('ChallengeId: ' + challengesResponse[currentIndex]["ChallengeId"]);
-        console.log('Index: ' + index + ' *** Title: ' + title);
+        console.log(JSON.stringify(challengesResponse[currentIndex]));
+        console.log('[' + indexes.join(',') + ']');
+        console.log('[' + notPassedChallenges.join(',') + ']');
+        console.log('[' + passedChallenges.join(',') + ']');
         console.log('-----------------');
-        index++;
-
     }
 
     function acceptSuccess() {

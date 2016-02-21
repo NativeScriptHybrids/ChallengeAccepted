@@ -6,13 +6,9 @@ var frameModule = require("ui/frame");
 var http = require("http");
 var imageSource = require("image-source");
 var userService = require("~/data/user-service");
-
+var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 
 var addModule = (function() {
-
-	// var challenges = new observable.Observable({
-	// 	"allChallenges": challengesResponse
-	// });
 
 	var topmost,
 		titleTextField,
@@ -24,12 +20,22 @@ var addModule = (function() {
 		imageUrl,
 		description,
 		rating,
-		daysToComplete;
+		daysToComplete,
+        topSegmentedBar,
+        bottomSegmentedBar;
 
     var addModule = {
 
         pageLoaded: function(args) {
             var page = args.object;
+
+            bottomSegmentedBar = view.getViewById(page, 'bottom-segmented-bar');
+            bottomSegmentedBar.selectedIndex = 0;
+
+            topSegmentedBar = view.getViewById(page, 'top-segmented-bar');
+            topSegmentedBar.selectedIndex = 2;
+
+            attachEvents();
 
             titleTextField = view.getViewById(page, "add-title");
             imageUrlTextField = view.getViewById(page, "add-image-url");
@@ -55,13 +61,13 @@ var addModule = (function() {
         	}
 
         	userService.addChallenge(newChallenge, addSuccess, helperModule.handleHttpRequestError);      	
-        },
-
-        onBackToProfileBtnTap: function() {
-        	topmost.goBack();
         }
-
     };
+
+    function attachEvents(){
+        segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
+        segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
+    }
 
     function addSuccess() {
     	helperModule.notify('Challenge Added');
