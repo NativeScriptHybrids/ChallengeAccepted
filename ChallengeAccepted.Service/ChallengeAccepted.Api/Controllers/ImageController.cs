@@ -35,5 +35,13 @@ namespace ChallengeAccepted.Api.Controllers
 
             return this.BadRequest("The image couldn't be uploaded.");
         }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UploadPhoto(HttpPostedFile photo)
+        {
+            string url = await photoService.UploadPhotoAsync(photo);
+
+            return this.Ok(url);
+        }
     }
 }
