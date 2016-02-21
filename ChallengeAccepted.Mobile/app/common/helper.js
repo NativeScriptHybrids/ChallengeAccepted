@@ -1,5 +1,6 @@
 var frameModule = require("ui/frame");
 var moment = require('moment');
+var Toast = require("nativescript-toast");
 
 var HelperModule = (function() {
 
@@ -38,8 +39,11 @@ var HelperModule = (function() {
             topmost.navigate(navigationEntry);
         },
 
+
         notify: function(message){
-            alert(message);
+            var toast = Toast.makeText(message);
+            toast.show();
+            //alert(message);
         },
 
         handleHttpRequestError: function(response){
@@ -59,6 +63,14 @@ var HelperModule = (function() {
             ];
 
             return difficulties[difficultyNumber];
+        },
+
+        formatStatusToEnum: function(statusNumber){
+            var difficulties = [
+                'Active', 'Completed', 'Failed', 'Declined'
+            ];
+
+            return difficulties[statusNumber];
         }
 
     };
@@ -72,3 +84,4 @@ exports.notify = HelperModule.notify;
 exports.handleHttpRequestError = HelperModule.handleHttpRequestError;
 exports.formatDateToShort = HelperModule.formatDateToShort;
 exports.formatDifficultyToEnum = HelperModule.formatDifficultyToEnum;
+exports.formatStatusToEnum = HelperModule.formatStatusToEnum;

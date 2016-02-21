@@ -21,19 +21,27 @@ namespace ChallengeAccepted.Api.Controllers
             this.photoService = photoService;
         }
 
+        //[HttpPost]
+        //public async Task<IHttpActionResult> UploadPhoto()
+        //{
+        //    if (HttpContext.Current.Request.Files.AllKeys.Any())
+        //    {
+        //        var httpPostedFile = HttpContext.Current.Request.Files["photo"];
+
+        //        string url = await photoService.UploadPhotoAsync(httpPostedFile);
+
+        //        return this.Ok(url);
+        //    }
+
+        //    return this.BadRequest("The image couldn't be uploaded.");
+        //}
+
         [HttpPost]
-        public async Task<IHttpActionResult> UploadPhoto()
+        public async Task<IHttpActionResult> UploadPhoto(HttpPostedFile photo)
         {
-            if (HttpContext.Current.Request.Files.AllKeys.Any())
-            {
-                var httpPostedFile = HttpContext.Current.Request.Files["photo"];
+            string url = await photoService.UploadPhotoAsync(photo);
 
-                string url = await photoService.UploadPhotoAsync(httpPostedFile);
-
-                return this.Ok(url);
-            }
-
-            return this.BadRequest("The image couldn't be uploaded.");
+            return this.Ok(url);
         }
     }
 }

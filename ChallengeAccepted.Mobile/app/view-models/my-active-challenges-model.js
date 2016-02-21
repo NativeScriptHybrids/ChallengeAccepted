@@ -6,11 +6,11 @@ var helperModule = require("~/common/helper");
 var moment = require('moment');
 
 var MyActiveChallengesModel = new observable.Observable();
-
+var responseContent;
 myChallengesService.getActiveChallenges(getActiveChallengesSuccess, helperModule.handleHttpRequestError);
 
 function getActiveChallengesSuccess(response) {
-    var responseContent =  response.content.toJSON();
+    responseContent =  response.content.toJSON();
     for (var i = 0; i < responseContent.length; i++) {
         responseContent[i]["DeadLine"] = helperModule.formatDateToShort(responseContent[i]["DeadLine"]).toString();
     }
@@ -19,8 +19,8 @@ function getActiveChallengesSuccess(response) {
 }
 
 function viewChallenge(args){
-    console.log(args.index);
-    //TODO: navigate to details page with current index as data;
+    var id = responseContent[args.index]['Id'];
+    helperModule.navigate("./views/profile/challenge-active-details", {'id' : id });
 };
 
 exports.MyActiveChallengesModel = MyActiveChallengesModel;

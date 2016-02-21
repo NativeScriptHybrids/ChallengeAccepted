@@ -1,0 +1,82 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatedTo="onNavigatedTo">
+    <!--loaded="pageLoaded"-->
+    <Page.actionBar>
+        <ActionBar class="action-bar" title="Register" android.icon="res://icon" android.iconVisibility="always">
+            <!--<android>-->
+            <!--<NavigationButton icon="~/images/challenge-accepted.png" width="20"/>-->
+            <!--</android>-->
+            <ActionBar.actionItems>
+                <!--<ActionItem icon="{{ 'res://dots-icon' }}"/>-->
+            </ActionBar.actionItems>
+            <ActionBar.titleView>
+                <GridLayout horizontalAlignment="center">
+                    <Label horizontalAlignment="center" text="Challenge" class="GoudySto title"
+                           android:margin="0 0 0 -10"/>
+                </GridLayout>
+            </ActionBar.titleView>
+        </ActionBar>
+    </Page.actionBar>
+    <GridLayout rows="auto, *" class="page-background">
+
+        <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
+            <SegmentedBar.items>
+                <SegmentedBarItem title="Active"/>
+                <SegmentedBarItem title="Done"/>
+                <SegmentedBarItem title="Edit"/>
+                <SegmentedBarItem title="Added"/>
+                <SegmentedBarItem title="Badges"/>
+            </SegmentedBar.items>
+        </SegmentedBar>
+
+        <GridLayout id="profile-info-grid" row="1" rows="auto, auto, auto, auto, auto, auto, *">
+            <StackLayout row="1">
+                <Label id="challenge-title" textWrap="true" class="challenge-response-details-title"/>
+                <Label id="challenge-creator" textWrap="true" class="challenge-response-details-creator"/>
+                <Label id="challenge-description" textWrap="true" class="challenge-response-details-description"/>
+            </StackLayout>
+            <StackLayout row="2">
+                <Label class="details-label-title" text="Difficulty"/>
+                <Border class="profile-border"/>
+                <Label id="challenge-difficulty" class="challenge-response-details-difficulty"/>
+            </StackLayout>
+            <StackLayout row="3">
+                <Label class="details-label-title" text="Started"/>
+                <Border class="profile-border"/>
+                <Label id="challenge-assigned-on" textWrap="true" class="challenge-response-details-assigned-on"/>
+            </StackLayout>
+            <StackLayout row="4">
+                <Label class="details-label-title" text="Deadline"/>
+                <Border class="profile-border"/>
+                <Label id="challenge-deadline" textWrap="true" class="challenge-response-details-deadline"/>
+            </StackLayout>
+            <StackLayout row="5">
+                <Label class="details-label-title" text="Status"/>
+                <Border class="profile-border"/>
+                <Label id="challenge-status" textWrap="true" class="challenge-response-details-status"/>
+            </StackLayout>
+            <GridLayout row="6" rows="auto, auto, *" verticalAlignment="bottom">
+                <StackLayout row="0">
+                    <Button text="Add Pic" class="add-image-button" tap="onAddPicTap"/>
+                    <TextField id="VideoLink" class="text-input" hint="Video link" text="{{ videoLink }}"/>
+                </StackLayout>
+                <StackLayout row="1">
+                    <Button text="Complete" class="white-button" tap="onCompleteChallengeTap"/>
+                </StackLayout>
+                <SegmentedBar row="2" id="bottom-segmented-bar" class="main-page-segmented-bar">
+                    <SegmentedBar.items>
+                        <SegmentedBarItem title="Add"/>
+                        <SegmentedBarItem title="Pick"/>
+                        <SegmentedBarItem title="Profile"/>
+                        <SegmentedBarItem title="Rate"/>
+                        <SegmentedBarItem title="Logout"/>
+                    </SegmentedBar.items>
+                </SegmentedBar>
+
+            </GridLayout>
+        </GridLayout>
+
+        <AbsoluteLayout cssClass="activity-indicator" row="3">
+            <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
+        </AbsoluteLayout>
+    </GridLayout>
+</Page>
