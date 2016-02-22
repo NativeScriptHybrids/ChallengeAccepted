@@ -38,7 +38,9 @@ var pageModules = (function() {
         },
 
         onBadgeImageDoubleTap: function(args){
-            vmModule.unlockBadge(args);
+            vmModule.unlockBadge(args).then(function (response) {
+                console.log('in unlock badge' + response);
+            });
         }
     };
 

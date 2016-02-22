@@ -102,7 +102,7 @@ height: 150
 
 /*---challenge-to-pick---*/
 .challenge-stack {
-	background-color: #d3d3d3;
+	/*background-color: #d3d3d3;*/
 	padding-left: 50;
 	padding-right: 50;
 }
@@ -200,7 +200,10 @@ height: 150
 .challenge-details-description {
     font-size: 18;
     horizontal-align: center;
+    text-align:center;
     padding-bottom: 10;
+    padding-left: 10;
+    padding-right:10;
     color:antiquewhite;
 }
 
@@ -215,6 +218,9 @@ height: 150
 .challenge-response-details-description {
     font-size: 18;
     horizontal-align: center;
+    text-align:center;
+    padding-left: 10;
+    padding-right:10;
     padding-bottom: 15;
     color:antiquewhite;
 }

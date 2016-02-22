@@ -86,35 +86,6 @@ var pageModules = (function() {
         //});
     }
 
-    //function getProfilePicture() {
-    //    console.log('in get profile pic view')
-    //    var username = AppSettings.getString(globalConstants.LocalStorageUsernameKey);
-    //    return profileServiceSQLite.Profile.getProfile(username)
-    //        .then(function (result) {
-    //            console.log('pic' + result[0]);
-    //            imageView.imageSource = result[0];
-    //            console.log(imageView.imageSource)
-    //            //imageView.src = result[0];
-    //            return result[0];
-    //
-    //            //var imageUrl = result[0] || '~/images/default-profile-img.jpg';
-    //            //ProfileViewModel.set('imageUrl', imageUrl);
-    //        });
-    //}
-
-//    function getProfileSuccess(response) {
-//        //Store in local storage
-//        viewModel.mapResponseToViewModel(response);
-//        //pageModules.pageLoaded();
-//        //    .firstName = response.content.toJSON()['FirstName'];
-//        //viewModel.lastName = response.content.toJSON()['LastName'];
-//        //viewModel.username = response.content.toJSON()['Username'];
-//console.log(viewModel.username);
-//        console.log('success', JSON.stringify(response));
-//
-//        //todo to view model function in view model - return new and populate labels
-//    }
-
     return pageModules;
 })();
 //exports.pageNavigatingTo = pageModules.pageNavigatingTo;

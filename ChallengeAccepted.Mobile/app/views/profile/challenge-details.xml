@@ -10,13 +10,13 @@
             </ActionBar.actionItems>
             <ActionBar.titleView>
                 <GridLayout horizontalAlignment="center">
-                    <Label horizontalAlignment="center" text="Challenge" class="GoudySto title"
+                    <Label horizontalAlignment="center" text="Challenge" class="BuxtonSketch title"
                            android:margin="0 0 0 -10"/>
                 </GridLayout>
             </ActionBar.titleView>
         </ActionBar>
     </Page.actionBar>
-    <ScrollView>
+
     <GridLayout rows="auto, *" class="page-background">
 
         <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
@@ -56,5 +56,4 @@
             <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
         </AbsoluteLayout>
     </GridLayout>
-    </ScrollView>
 </Page>

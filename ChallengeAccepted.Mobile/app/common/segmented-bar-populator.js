@@ -12,7 +12,7 @@ var SegmentedBarPopulatorModule = (function() {
             segmentedBar.on('propertyChange', function(){
                 if (segmentedBar.selectedIndex === 0){
                     console.log('here');
-                    helperModule.navigate("./views/add-challenge/add-challengee");
+                    helperModule.navigate("./views/challenge/add-challenge");
                 } else if (segmentedBar.selectedIndex === 1){ //Pick
                     helperModule.navigate("./views/challenge/challenge-to-pick");
                 } else if (segmentedBar.selectedIndex === 2){ //Profile

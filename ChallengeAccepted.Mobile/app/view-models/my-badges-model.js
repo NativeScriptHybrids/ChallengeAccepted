@@ -30,14 +30,17 @@ function getHint(args){
     }
 };
 
+var currentBadge;
 function unlockBadge(args){
-    myBadgeService.unlockBadge(args.object.id, unlockBadgeSuccess, helperModule.handleHttpRequestError);
+    currentBadge = args.object.id;
+    return myBadgeService.unlockBadge(args.object.id, unlockBadgeSuccess, helperModule.handleHttpRequestError);
 };
 
 function unlockBadgeSuccess(response) {
     var unlockResponseContent =  response.content.toJSON();
     console.log(JSON.stringify(response));
     helperModule.notify('Successfully unlocked badge!');
+    return currentBadge;
 }
 
 exports.MyBadgesModel = MyBadgesModel;

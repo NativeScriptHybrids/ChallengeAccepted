@@ -1,4 +1,20 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+	<Page.actionBar>
+		<ActionBar class="action-bar" title="Register" android.icon="res://icon" android.iconVisibility="always">
+			<!--<android>-->
+			<!--<NavigationButton icon="~/images/challenge-accepted.png" width="20"/>-->
+			<!--</android>-->
+			<ActionBar.actionItems>
+				<!--<ActionItem icon="{{ 'res://dots-icon' }}"/>-->
+			</ActionBar.actionItems>
+			<ActionBar.titleView>
+				<GridLayout horizontalAlignment="center">
+					<Label horizontalAlignment="center" text="Challenge" class="BuxtonSketch title"
+						   android:margin="0 0 0 -10"/>
+				</GridLayout>
+			</ActionBar.titleView>
+		</ActionBar>
+	</Page.actionBar>
 	<GridLayout rows="auto, *, auto" class="page-background">
 	    <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
 	      <SegmentedBar.items>
@@ -10,13 +26,14 @@
 	      </SegmentedBar.items>
 	    </SegmentedBar>
 
-		<StackLayout row="1" id="challenge-stack">
-		    <Label text="Elbow Challenge" id="challenge-title"/>
-			<Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFit" id="challenge-img" />
-			<Label text="Lick your elbow" id="challenge-description"/>
-			<Label text="Rating: " id="challenge-rating"/>
+		<StackLayout row="1" id="challenge-stack" class="page-background">
+			<Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" class="profile-image" stretch="aspectFill" id="challenge-img" />
+			<Label text="Elbow Challenge" textWrap="true" id="challenge-title"/>
+			<Label text="Lick your elbow" textWrap="true" id="challenge-description"/>
+			<Label text="1" id="challenge-difficulty" class="challenge-details-difficulty" />
+			<Label text="0" id="challenge-days-to-complete" class="challenge-details-days-to-complete" />
 
-			<GridLayout columns="*, *" rows="auto">
+			<GridLayout columns="*, *" rows="auto" class="arrow-grid">
 				<Image col="0" row="0" horizontalAlignment="left" src="~/images/arrow_curved_red_left.png" id="left-arrow" class="arrow"/>
 				<Image col="1" row="0" horizontalAlignment="right" src="~/images/arrow_curved_green_right.png" id="right-arrow" class="arrow"/>
 		  	</GridLayout>

@@ -50,6 +50,7 @@ var HelperModule = (function() {
             console.log(JSON.stringify(response));
             var errorMessage = response.content.toJSON()['error_description'] || response.content.toJSON()['Message'] ;
             HelperModule.notify(errorMessage);
+            return response;
         },
 
         getConnection: function(){

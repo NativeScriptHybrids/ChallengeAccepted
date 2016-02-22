@@ -9,7 +9,7 @@
       </ActionBar.actionItems>
       <ActionBar.titleView>
         <GridLayout horizontalAlignment="center">
-          <Label horizontalAlignment="center" text="My Done Challenges" class="GoudySto title"
+          <Label horizontalAlignment="center" text="My Done Challenges" class="BuxtonSketch title"
                  android:margin="0 0 0 -10"/>
         </GridLayout>
       </ActionBar.titleView>

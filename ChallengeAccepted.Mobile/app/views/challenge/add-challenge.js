@@ -1,54 +1,82 @@
-'use strict';
-
-var vmModule = require("./../../view-models/add-challenge-model");
-var helperModule = require("~/common/helper");
+var page = require("ui/page");
 var view = require("ui/core/view");
-var AppSettings = require("application-settings");
-var globalConstants = require("~/common/global-constants");
+var helperModule = require("~/common/helper");
+var observable = require("data/observable");
+var frameModule = require("ui/frame");
+var http = require("http");
+var imageSource = require("image-source");
+var userService = require("~/data/user-service");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 
-var pageModules = (function() {
+var addModule = (function() {
 
-    var viewModel,
-        segmentedBar;
+	var topmost,
+		titleTextField,
+		imageUrlTextField,
+		descriptionTextField,
+		ratingTextField,
+		daysToCompleteTextField,
+		title,
+		imageUrl,
+		description,
+		rating,
+		daysToComplete,
+        topSegmentedBar,
+        bottomSegmentedBar;
 
-    var pageModules = {
+    var addModule = {
 
-        // Loading page event
         pageLoaded: function(args) {
             var page = args.object;
-            viewModel = vmModule.AddChallengeModel;
-            page.bindingContext = viewModel;
 
-            segmentedBar = view.getViewById(page, "bottom-segmented-bar");
-            segmentedBar.selectedIndex = 0;
+            bottomSegmentedBar = view.getViewById(page, 'bottom-segmented-bar');
+            bottomSegmentedBar.selectedIndex = 0;
+
+            topSegmentedBar = view.getViewById(page, 'top-segmented-bar');
+            topSegmentedBar.selectedIndex = 2;
 
             attachEvents();
+
+            titleTextField = view.getViewById(page, "add-title");
+            imageUrlTextField = view.getViewById(page, "add-image-url");
+            descriptionTextField = view.getViewById(page, "add-description");
+            ratingTextField = view.getViewById(page, "add-rating");
+            daysToCompleteTextField = view.getViewById(page, "add-days-to-complete");
+
+            topmost = frameModule.topmost();
+        },
+
+        onAddBtnTap: function() {
+        	title = titleTextField.text;
+        	imageUrl = imageUrlTextField.text;
+        	description = descriptionTextField.text;
+        	rating = parseInt(ratingTextField.text);
+        	daysToComplete = parseInt(daysToCompleteTextField.text);
+
+        	var newChallenge = {
+        		"Title": title,
+        		"Description": description,
+        		"Difficulty": rating,
+        		"DaysToComplete": daysToComplete
+        	}
+
+        	userService.addChallenge(newChallenge, addSuccess, helperModule.handleHttpRequestError);      	
         }
     };
 
     function attachEvents(){
-        segmentedBarPopulator.populateProfileBottomSegmentedBar(segmentedBar);
-        //segmentedBar.on('propertyChange', function(){
-        //    if (segmentedBar.selectedIndex === 0){
-        //        helperModule.navigate("./views/challenge/add-challenge");
-        //    } else if (segmentedBar.selectedIndex === 1){ //Pick
-        //        helperModule.navigate("./views/challenge/challenge-to-pick");
-        //    }else if (segmentedBar.selectedIndex === 2){ //Profile
-        //        helperModule.navigate("./views/profile/profile");
-        //    }else if (segmentedBar.selectedIndex === 3){ //Peek / Browse
-        //        helperModule.navigate("./views/challenge/done-challenges");
-        //    }else if (segmentedBar.selectedIndex === 4){ //LogOut
-        //        AppSettings.setString(globalConstants.LocalStorageTokenKey, '');
-        //        AppSettings.setString(globalConstants.LocalStorageUsernameKey, '');
-        //
-        //        helperModule.navigate("./views/main/main");
-        //    }
-        //});
+        segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
+        segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
     }
 
-    return pageModules;
+    function addSuccess() {
+    	helperModule.notify('Challenge Added');
+			
+		//topmost.goBack();
+    }
+
+    return addModule;
 })();
 
-exports.pageLoaded = pageModules.pageLoaded;
-
+exports.pageLoaded = addModule.pageLoaded;
+exports.onAddBtnTap = addModule.onAddBtnTap;

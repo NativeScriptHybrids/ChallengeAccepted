@@ -10,7 +10,7 @@
       <!--</ActionBar.actionItems>-->
       <ActionBar.titleView>
         <GridLayout horizontalAlignment="center">
-          <Label horizontalAlignment="center" text="Welcome" class="GoudySto title" />
+          <Label horizontalAlignment="center" text="Welcome" class="BuxtonSketch title" />
           <!--<Image src="res://logo" stretch="none" horizontalAlignment="center" android:margin="40 0 0 0" />-->
         </GridLayout>
       </ActionBar.titleView>

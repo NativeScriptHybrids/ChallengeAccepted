@@ -21,12 +21,14 @@ var challengeModules = (function() {
 		titleLabel,
 		image,
 		descriptionLabel,
-		ratingLabel,
+		difficultyLabel,
+        daysToCompleteLabel,
 		currentIndex,
 		title,
 		imageUrl,
 		description,
-		rating,
+		difficulty,
+        daysToComplete,
         topSegmentedBar,
         bottomSegmentedBar,
         previousDeltaX = 0,
@@ -52,9 +54,12 @@ var challengeModules = (function() {
             titleLabel = view.getViewById(page, "challenge-title");
             image = view.getViewById(page, "challenge-img");
             descriptionLabel = view.getViewById(page, "challenge-description");
-            ratingLabel = view.getViewById(page, "challenge-rating");
+            difficultyLabel = view.getViewById(page, "challenge-difficulty");
+            daysToCompleteLabel = view.getViewById(page, "challenge-days-to-complete");
 
-        	var resp = http.getJSON("https://challengeaccepted.azurewebsites.net/api/challenge/get").then(function (r) {
+
+        	var resp = http.getJSON("https://challengeaccepted.azurewebsites.net/api/challenge/get")
+                .then(function (r) {
     		    	//challengesResponse = JSON.stringify(r);
     		    	challengesResponse = r;
                     //console.log(JSON.stringify(challengesResponse));
@@ -68,7 +73,7 @@ var challengeModules = (function() {
 
                     console.log('Indexes: [' + indexes.join(',') + ']');
                     console.log('Not passed: [' + notPassedChallenges.join(',') + ']');
-                    
+                    changeContent();
                     panEvent();
     			}, function (e) {
     				console.log('Error getting challenges');
@@ -139,8 +144,11 @@ var challengeModules = (function() {
         description = challengesResponse[currentIndex]["Description"];
         descriptionLabel.text = description;
 
-        rating = challengesResponse[currentIndex]["Difficulty"];
-        ratingLabel.text = 'Rating: ' + rating;
+        difficulty = challengesResponse[currentIndex]["Difficulty"];
+        difficultyLabel.text = 'Difficulty: ' + difficulty;
+
+        daysToComplete = challengesResponse[currentIndex]["DaysToComplete"];
+        daysToCompleteLabel.text = 'Days to complete: ' + daysToComplete;
 
         console.log('ChallengeId: ' + challengesResponse[currentIndex]["ChallengeId"]);
         console.log(JSON.stringify(challengesResponse[currentIndex]));
@@ -150,8 +158,10 @@ var challengeModules = (function() {
         console.log('-----------------');
     }
 
-    function acceptSuccess() {
+    function acceptSuccess(response) {
+        var id = response.content.toJSON()['Id'];
         helperModule.notify('Challenge Accepted');
+        helperModule.navigateAnimated("./views/profile/challenge-active-details", {'id' : id });
     }
 
     return challengeModules;
