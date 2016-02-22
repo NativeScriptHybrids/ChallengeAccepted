@@ -4,19 +4,24 @@ var observable = require("data/observable");
 var validationModule = require("~/common/validate");
 var accountServiceModule = require("~/data/account-service");
 var helperModule = require("~/common/helper");
+var cameraModule = require("~/common/camera-module");
+var profileServiceSQLite = require("~/database/profile-service");
+var AppSettings = require("application-settings");
+var globalConstants = require("~/common/global-constants");
 
 var ProfileViewModel = new observable.Observable();
+
 ProfileViewModel.set('isLoading', true);
+ProfileViewModel.set('imageUrl', '~/images/default-profile-img.jpg');
 
 accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
+getProfilePicture();
 
 function getProfileSuccess(response) {
     mapResponseToViewModel(response);
-    //console.log('success', JSON.stringify(response));
-    //console.log(JSON.stringify(self));
 }
 
-function mapResponseToViewModel(response){
+function mapResponseToViewModel(response) {
     ProfileViewModel.set('username', response.content.toJSON()['Username']);
     ProfileViewModel.set('email', response.content.toJSON()['Email']);
 
@@ -28,8 +33,8 @@ function mapResponseToViewModel(response){
     var fullName = (ProfileViewModel.get('firstName') + ' ' + ProfileViewModel.get('lastName')).trim() || 'no name added'
     ProfileViewModel.set('fullName', fullName);
 
-    var imageUrl = response.content.toJSON()['ImageUrl'] || '~/images/default-profile-img.jpg';
-    ProfileViewModel.set('imageUrl', imageUrl);
+    //var imageUrl = response.content.toJSON()['ImageUrl'] || '~/images/default-profile-img.jpg';
+    //ProfileViewModel.set('imageUrl', imageUrl);
 
     //ProfileViewModel.set('location', response.content.toJSON()['Location']);
     ProfileViewModel.set('score', response.content.toJSON()['Score']);
@@ -39,6 +44,57 @@ function mapResponseToViewModel(response){
     ProfileViewModel.set('isLoading', false);
     //console.log('in model ' + response.content.toJSON()['Score']);
     //console.log(ProfileViewModel.get('email'));
+}
+
+function getProfilePicture() {
+    console.log('in get profile pic');
+    var username = AppSettings.getString(globalConstants.LocalStorageUsernameKey);
+    return profileServiceSQLite.Profile.getProfile(username)
+        .then(function (result) {
+            console.log('in get profile pic promise');
+            var photo;
+            if (result.length > 0) {
+                photo = result[0].toString();
+                console.log(photo);
+            } else {
+                photo = '~/images/default-profile-img.jpg';
+            }
+
+            ProfileViewModel.set('imageUrl', photo);
+            return result[0];
+
+            //var imageUrl = result[0] || '~/images/default-profile-img.jpg';
+            //ProfileViewModel.set('imageUrl', imageUrl);
+        });
+}
+
+function addProfilePicture(imageView) {
+    cameraModule.takePicture(imageView).then(function (imageUrl) {
+        ProfileViewModel.set('imageUrl', imageUrl);
+        var username = AppSettings.getString(globalConstants.LocalStorageUsernameKey);
+        return profileServiceSQLite.Profile.getProfile(username)
+            .then(function (result) {
+                if (result.length > 0) {
+                    updatePicture(username, imageUrl);
+                } else {
+                    addPicture(username, imageUrl);
+                }
+            });
+    });
+}
+
+function addPicture(username, imageUrl) {
+    return profileServiceSQLite.Profile.addProfile(username, imageUrl)
+        .then(function () {
+            helperModule.notify('Image added successfully!');
+        });
+}
+
+function updatePicture(username, imageUrl) {
+    return profileServiceSQLite.Profile.updateProfile(username, imageUrl)
+        .then(function () {
+            helperModule.notify('Image updated successfully!');
+        });
 }
 //
 //var ProfileViewModel = (function (_super) {
@@ -240,3 +296,5 @@ function mapResponseToViewModel(response){
 ////    //return ProfileViewModel;
 ////}
 exports.ProfileViewModel = ProfileViewModel;
+exports.addProfilePicture = addProfilePicture;
+exports.getProfilePicture = getProfilePicture;

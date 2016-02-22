@@ -26,7 +26,7 @@
             </SegmentedBar.items>
         </SegmentedBar>
         <GridLayout id="profile-info-grid" row="2" rows="auto, auto, auto, auto, auto, auto, *">
-            <Image row="0" src="{{ imageUrl }}" class="profile-image" stretch="aspectFill"/>
+            <Image row="0" id="profile-image" src="{{ imageUrl }}" class="profile-image" stretch="aspectFill"/>
             <Label id="fullName" class="profile-label" text="{{ fullName }}"  row="1" />
             <StackLayout row="2">
                 <Label id="emailTitle" class="profile-label-title"  text="Email" />

@@ -12,6 +12,8 @@ var globalConstants = require("~/common/global-constants");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 var connectionChecker = require("~/common/connection-checker");
 var profileServiceSQLite = require("~/database/profile-service");
+var imageSource = require("image-source");
+var imageModule = require("ui/image");
 
 var pageModules = (function() {
 
@@ -21,7 +23,8 @@ var pageModules = (function() {
         bottomSegmentedBar,
         nameLabel,
         grid,
-        registerButton;
+        registerButton,
+        imageView;
 
     var pageModules = {
 
@@ -53,6 +56,8 @@ var pageModules = (function() {
             var username = AppSettings.getString(globalConstants.LocalStorageUsernameKey);
             var imageUrl = 'testurl1';
 
+            imageView = view.getViewById(page, "profile-image");
+            //getProfilePicture();
             ////TODO: move to edit or image select
             //profileServiceSQLite.Profile.addProfile(username, imageUrl);
             //console.log('opaaa ', JSON.stringify(profileServiceSQLite.Profile.getProfile(username)));
@@ -63,6 +68,10 @@ var pageModules = (function() {
 
             //accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
             attachEvents();
+        },
+
+        addProfilePicture: function(args) {
+            vmModule.addProfilePicture(imageView);
         }
     };
 
@@ -70,10 +79,28 @@ var pageModules = (function() {
         segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
         segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
 
+        imageView.on('longPress', pageModules.addProfilePicture);
+
         //registerButton.on(buttonModule.Button.tapEvent, function (args) {
         //    viewModel.registerTap();
         //});
     }
+
+    //function getProfilePicture() {
+    //    console.log('in get profile pic view')
+    //    var username = AppSettings.getString(globalConstants.LocalStorageUsernameKey);
+    //    return profileServiceSQLite.Profile.getProfile(username)
+    //        .then(function (result) {
+    //            console.log('pic' + result[0]);
+    //            imageView.imageSource = result[0];
+    //            console.log(imageView.imageSource)
+    //            //imageView.src = result[0];
+    //            return result[0];
+    //
+    //            //var imageUrl = result[0] || '~/images/default-profile-img.jpg';
+    //            //ProfileViewModel.set('imageUrl', imageUrl);
+    //        });
+    //}
 
 //    function getProfileSuccess(response) {
 //        //Store in local storage
@@ -92,3 +119,4 @@ var pageModules = (function() {
 })();
 //exports.pageNavigatingTo = pageModules.pageNavigatingTo;
 exports.pageLoaded = pageModules.pageLoaded;
+exports.addProfilePicture = pageModules.addProfilePicture;
