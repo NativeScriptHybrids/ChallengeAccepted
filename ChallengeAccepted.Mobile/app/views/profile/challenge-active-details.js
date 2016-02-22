@@ -6,11 +6,11 @@ var AppSettings = require("application-settings");
 var globalConstants = require("~/common/global-constants");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 var myChallengesService = require("~/data/my-challenges-service");
-var helperModule = require("~/common/helper");
 var animationModule = require("~/common/animate");
 var observable = require("data/observable");
-var cameraModule = require("camera");
 var imageSource = require("image-source");
+
+var cameraModule = require("~/common/camera-module");
 
 var pageModules = (function() {
 
@@ -24,7 +24,7 @@ var pageModules = (function() {
         dateStarted,
         deadlineLabel,
         statusLabel,
-    imageView;
+        imageView;
 
     var pageModules = {
 
@@ -60,30 +60,13 @@ var pageModules = (function() {
         },
 
         onAddPicTap: function(args){
-            console.log('in camera');
-            cameraModule.takePicture().then(function(photo) {
-                console.log("Result is an image source instance");
-               // var image = new imageModule.Image();
-                imageView.imageSource = photo;
-                var imageFile = imageView.imageSource.toBase64String('.jpg', 100);
-
-                var file = {
-                    Filename: 'test' + ".jpg",
-                    ContentType: "image/jpeg",
-                    base64: imageFile
-                };
-
-                console.log(JSON.stringify(photo));
-                myChallengesService.uploadImage(file, function(result){
-                    console.log('result ' + JSON.stringify(result));
-                    console.log('image uploaded');
-                }, function(error){
-                    console.log(JSON.stringify(error) + 'error');
-                });
-
+            cameraModule.takePicture(imageView).then(function(imageUrl){
+               // imageView.src = imageUrl;
+                console.log('res' + JSON.stringify(imageUrl));
             });
         }
     };
+
 
     function getAddedChallengesSuccess(response) {
         mapResponseToView(response);
@@ -98,6 +81,7 @@ var pageModules = (function() {
         dateStarted.text = helperModule.formatDateToShort(response.content.toJSON()["AssignedOn"]).toString();
         deadlineLabel.text = helperModule.formatDateToShort(response.content.toJSON()["DeadLine"]).toString();
         statusLabel.text = helperModule.formatStatusToEnum(parseInt(response.content.toJSON()["Status"])).toString();
+        imageView.src = response.content.toJSON()['ImageUrl'] || '~/images/challenge-accepted-default.png';
     }
 
     function attachEvents(){
