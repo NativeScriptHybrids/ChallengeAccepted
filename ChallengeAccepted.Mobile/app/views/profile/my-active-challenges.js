@@ -11,13 +11,14 @@ var pageModules = (function() {
 
     var viewModel,
         topSegmentedBar,
-        bottomSegmentedBar;
+        bottomSegmentedBar,
+        page;
 
     var pageModules = {
 
         // Loading page event
         pageLoaded: function(args) {
-            var page = args.object;
+            page = args.object;
             viewModel = vmModule.MyActiveChallengesModel;
             page.bindingContext = viewModel;
 
@@ -28,6 +29,8 @@ var pageModules = (function() {
             topSegmentedBar.selectedIndex = 0;
 
             attachEvents();
+
+            animateListView();
         },
 
         viewChallenge: function(args){
@@ -38,6 +41,13 @@ var pageModules = (function() {
     function attachEvents(){
         segmentedBarPopulator.populateProfileBottomSegmentedBar(bottomSegmentedBar);
         segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
+    }
+
+    function animateListView(){
+        view.getViewById(page, "active-challenges").animate({
+            opacity: 1,
+            duration: 10000
+        });
     }
 
     return pageModules;

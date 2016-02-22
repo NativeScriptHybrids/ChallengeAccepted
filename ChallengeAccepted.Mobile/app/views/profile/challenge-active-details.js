@@ -7,6 +7,7 @@ var globalConstants = require("~/common/global-constants");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 var myChallengesService = require("~/data/my-challenges-service");
 var helperModule = require("~/common/helper");
+var animationModule = require("~/common/animate");
 var observable = require("data/observable");
 var cameraModule = require("camera");
 var imageSource = require("image-source");
@@ -40,6 +41,8 @@ var pageModules = (function() {
             deadlineLabel = view.getViewById(page, "challenge-deadline");
             statusLabel = view.getViewById(page, "challenge-status");
             imageView = view.getViewById(page, "challenge-imageUrl");
+
+            animationModule.slideInDiagonal(page);
 
             myChallengesService.getChallengeResponseDetails(id, getAddedChallengesSuccess, helperModule.handleHttpRequestError);
 

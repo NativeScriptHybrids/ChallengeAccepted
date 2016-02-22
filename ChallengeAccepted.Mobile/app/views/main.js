@@ -30,7 +30,7 @@ var pageModules = (function() {
 
             // TODO: change to another page
             if (accountServiceModule.isAuthenticated()){
-                helperModule.navigate("./views/account/profile");
+                helperModule.navigate("./views/profile/profile");
             }
         }
     };

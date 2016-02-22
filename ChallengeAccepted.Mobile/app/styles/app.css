@@ -27,6 +27,11 @@
     horizontal-align: center;
 }
 
+.activity-indicator {
+    vertical-align: center;
+    horizontal-align: center;
+}
+
 /*.message {*/
     /*font-size: 20;*/
     /*color: #284848;*/

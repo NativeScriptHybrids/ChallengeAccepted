@@ -119,7 +119,7 @@ var RegisterViewModel = (function (_super) {
 
     function registerSuccess(response) {
         helperModule.notify('Successfully registered!');
-        helperModule.navigateAnimated("./views/login/login");
+        helperModule.navigateAnimated("./views/account/login");
     }
 
     return RegisterViewModel;

@@ -28,7 +28,7 @@
     </SegmentedBar>
 
     <GridLayout id="profile-info-grid" row="2" rows="10, *, auto">
-      <ListView items="{{ activeChallenges }}" itemTap="viewChallenge" row="1">
+      <ListView items="{{ activeChallenges }}" itemTap="viewChallenge" row="1" id="active-challenges">
         <ListView.itemTemplate>
           <StackLayout class="list-view-item">
             <Label text="{{ ChallengeTitle }}" textWrap="true" class="list-view-challenge-title" />

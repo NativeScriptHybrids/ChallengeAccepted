@@ -6,6 +6,9 @@ var helperModule = require("~/common/helper");
 var moment = require('moment');
 
 var MyDoneChallengesModel = new observable.Observable();
+
+MyDoneChallengesModel.set('isLoading', true);
+
 var responseContent;
 
 myChallengesService.getCompletedChallenges(getDoneChallengesSuccess, helperModule.handleHttpRequestError);
@@ -25,11 +28,12 @@ function getDoneChallengesSuccess(response) {
 
 
     MyDoneChallengesModel.set('doneChallenges', responseContent);
+    MyDoneChallengesModel.set('isLoading', false);
 }
 
 function viewChallenge(args){
     var id = responseContent[args.index]['Id'];
-    helperModule.navigate("./views/profile/challenge-done-details", {'id' : id });
+    helperModule.navigateAnimated("./views/profile/challenge-done-details", {'id' : id });
 };
 
 exports.MyDoneChallengesModel = MyDoneChallengesModel;

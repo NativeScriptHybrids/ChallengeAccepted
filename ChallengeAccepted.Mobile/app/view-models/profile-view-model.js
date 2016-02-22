@@ -6,6 +6,7 @@ var accountServiceModule = require("~/data/account-service");
 var helperModule = require("~/common/helper");
 
 var ProfileViewModel = new observable.Observable();
+ProfileViewModel.set('isLoading', true);
 
 accountServiceModule.getProfile(getProfileSuccess, helperModule.handleHttpRequestError);
 
@@ -35,7 +36,7 @@ function mapResponseToViewModel(response){
     ProfileViewModel.set('createdChallenges', response.content.toJSON()['CreatedChallenges']);
     ProfileViewModel.set('challengeResponses', response.content.toJSON()['ChallengeResponses']);
     ProfileViewModel.set('badges', response.content.toJSON()['Badges']);
-
+    ProfileViewModel.set('isLoading', false);
     //console.log('in model ' + response.content.toJSON()['Score']);
     //console.log(ProfileViewModel.get('email'));
 }

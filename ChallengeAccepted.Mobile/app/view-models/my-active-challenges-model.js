@@ -6,6 +6,9 @@ var helperModule = require("~/common/helper");
 var moment = require('moment');
 
 var MyActiveChallengesModel = new observable.Observable();
+
+MyActiveChallengesModel.set('isLoading', true);
+
 var responseContent;
 myChallengesService.getActiveChallenges(getActiveChallengesSuccess, helperModule.handleHttpRequestError);
 
@@ -16,11 +19,12 @@ function getActiveChallengesSuccess(response) {
     }
 
     MyActiveChallengesModel.set('activeChallenges', responseContent);
+    MyActiveChallengesModel.set('isLoading', false);
 }
 
 function viewChallenge(args){
     var id = responseContent[args.index]['Id'];
-    helperModule.navigate("./views/profile/challenge-active-details", {'id' : id });
+    helperModule.navigateAnimated("./views/profile/challenge-active-details", {'id' : id });
 };
 
 exports.MyActiveChallengesModel = MyActiveChallengesModel;

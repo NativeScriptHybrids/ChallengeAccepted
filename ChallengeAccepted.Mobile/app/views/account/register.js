@@ -4,6 +4,7 @@ var vmModule  = require("./../../view-models/register-view-model");
 var helperModule = require("~/common/helper");
 var buttonModule = require("ui/button");
 var view = require("ui/core/view");
+var connectionChecker = require("~/common/connection-checker");
 
 var pageModules = (function() {
 
@@ -19,6 +20,8 @@ var pageModules = (function() {
             var page = args.object;
             viewModel = new vmModule.RegisterViewModel();
             page.bindingContext = viewModel;
+
+            //connectionChecker.getConnection();
 
             segmentedBar = view.getViewById(page, 'register-segmented-bar');
             segmentedBar.selectedIndex = 0;

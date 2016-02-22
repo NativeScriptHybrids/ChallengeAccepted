@@ -8,6 +8,7 @@ var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 var myChallengesService = require("~/data/my-challenges-service");
 var helperModule = require("~/common/helper");
 var observable = require("data/observable");
+var animationModule = require("~/common/animate");
 
 var pageModules = (function() {
 
@@ -32,6 +33,8 @@ var pageModules = (function() {
             difficultyLabel = view.getViewById(page, "challenge-difficulty");
             imageView = view.getViewById(page, "challenge-imageUrl");
             daysToCompleteLabel = view.getViewById(page, "challenge-days-to-complete");
+
+            animationModule.slideInDiagonal(page);
 
             myChallengesService.getAddedChallengeDetails(id, getAddedChallengesSuccess, helperModule.handleHttpRequestError);
 

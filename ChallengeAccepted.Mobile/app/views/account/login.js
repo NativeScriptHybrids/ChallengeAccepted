@@ -7,6 +7,7 @@ var buttonModule = require("ui/button");
 //var topmost = frameModule.topmost();
 var view = require("ui/core/view");
 //var http = require("http");
+var connectionChecker = require("~/common/connection-checker");
 
 var pageModules = (function() {
 
@@ -23,6 +24,8 @@ var pageModules = (function() {
             viewModel = new vmModule.LoginViewModel();
             page.bindingContext = viewModel;
             // topmost = frameModule.topmost();
+
+            //connectionChecker.getConnection();
 
             segmentedBar = view.getViewById(page, "login-segmented-bar");
             segmentedBar.selectedIndex = 2;

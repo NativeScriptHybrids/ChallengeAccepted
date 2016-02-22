@@ -37,6 +37,7 @@ function unlockBadge(args){
 function unlockBadgeSuccess(response) {
     var unlockResponseContent =  response.content.toJSON();
     console.log(JSON.stringify(response));
+    helperModule.notify('Successfully unlocked badge!');
 }
 
 exports.MyBadgesModel = MyBadgesModel;

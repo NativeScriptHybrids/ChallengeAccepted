@@ -10,6 +10,8 @@ var accountServiceModule = require("~/data/account-service");
 var AppSettings = require("application-settings");
 var globalConstants = require("~/common/global-constants");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
+var connectionChecker = require("~/common/connection-checker");
+var profileServiceSQLite = require("~/database/profile-service");
 
 var pageModules = (function() {
 
@@ -47,6 +49,15 @@ var pageModules = (function() {
 
             topSegmentedBar = view.getViewById(page, 'profile-challenges-segmented-bar');
             topSegmentedBar.selectedIndex = 2;
+
+            var username = AppSettings.getString(globalConstants.LocalStorageUsernameKey);
+            var imageUrl = 'testurl1';
+
+            ////TODO: move to edit or image select
+            //profileServiceSQLite.Profile.addProfile(username, imageUrl);
+            //console.log('opaaa ', JSON.stringify(profileServiceSQLite.Profile.getProfile(username)));
+
+            //connectionChecker.getConnection();
 
             //registerButton = view.getViewById(page, 'register-button');
 

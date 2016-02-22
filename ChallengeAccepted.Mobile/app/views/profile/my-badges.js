@@ -29,6 +29,7 @@ var pageModules = (function() {
             topSegmentedBar.selectedIndex = 4;
 
             gridView = view.getViewById(page, 'badges-grid-view');
+
             attachEvents();
         },
 

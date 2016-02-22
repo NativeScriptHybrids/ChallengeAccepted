@@ -52,6 +52,21 @@ var HelperModule = (function() {
             HelperModule.notify(errorMessage);
         },
 
+        getConnection: function(){
+            var connectionType = connectivity.getConnectionType();
+            if (connectionType == connectivity.connectionType.none){
+                HelperModule.notify('You don\'t have connection');
+            }
+        },
+
+        monitorConnection: function(){
+            connectivity.startMonitoring(function onConnectionTypeChanged(newConnectionType){
+                if (newConnectionType == connectivity.connectionType.none){
+                    HelperModule.notify('You don\'t have connection');
+                }
+            });
+        },
+
         formatDateToShort: function (date) {
             var shortDate = moment(date.toString()).format('MMMM Do YYYY, h:mm:ss a');
             return shortDate;
