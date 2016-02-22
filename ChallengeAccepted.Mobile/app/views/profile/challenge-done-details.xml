@@ -16,6 +16,7 @@
             </ActionBar.titleView>
         </ActionBar>
     </Page.actionBar>
+    <ScrollView>
     <GridLayout rows="auto, *" class="page-background">
 
         <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
@@ -70,4 +71,5 @@
             <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
         </AbsoluteLayout>
     </GridLayout>
+    </ScrollView>
 </Page>

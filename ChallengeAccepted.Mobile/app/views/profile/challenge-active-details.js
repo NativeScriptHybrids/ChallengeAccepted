@@ -24,7 +24,9 @@ var pageModules = (function() {
         dateStarted,
         deadlineLabel,
         statusLabel,
-        imageView;
+        imageView,
+        videoUrlTextField,
+        imageUrl;
 
     var pageModules = {
 
@@ -41,6 +43,7 @@ var pageModules = (function() {
             deadlineLabel = view.getViewById(page, "challenge-deadline");
             statusLabel = view.getViewById(page, "challenge-status");
             imageView = view.getViewById(page, "challenge-imageUrl");
+            videoUrlTextField = view.getViewById(page, "challenge-video-url");
 
             animationModule.slideInDiagonal(page);
 
@@ -57,23 +60,35 @@ var pageModules = (function() {
 
         onCompleteChallengeTap: function(args){
             console.log('completed');
+            var challengeResponseViewModel = {
+                "VideoUrl": videoUrlTextField.text,
+                "ImageUrl": imageUrl
+            };
+
+            myChallengesService.completeChallenge(id, JSON.stringify(challengeResponseViewModel), completeChallengeSuccess, helperModule.handleHttpRequestError)
         },
 
         onAddPicTap: function(args){
-            cameraModule.takePicture(imageView).then(function(imageUrl){
+            cameraModule.takePicture(imageView).then(function(photo){
                // imageView.src = imageUrl;
-                console.log('res' + JSON.stringify(imageUrl));
+               // console.log('res' + JSON.stringify(photo));
+                imageUrl = photo;
             });
         }
     };
 
+    function completeChallengeSuccess(response){
+        helperModule.notify('Challenge completed!');
+        helperModule.navigateAnimated("./views/profile/challenge-done-details", {'id' : id });
+        console.log(JSON.stringify(response));
+    }
 
     function getAddedChallengesSuccess(response) {
         mapResponseToView(response);
     }
 
     function mapResponseToView(response) {
-        console.log(JSON.stringify(response.content.toJSON()));
+        //console.log(JSON.stringify(response.content.toJSON()));
         titleLabel.text = response.content.toJSON()['ChallengeTitle'];
         descriptionLabel.text = response.content.toJSON()['ChallengeDescription'];
         difficultyLabel.text = helperModule.formatDifficultyToEnum(parseInt(response.content.toJSON()["Difficulty"])).toString();

@@ -31,7 +31,7 @@ namespace ChallengeAccepted.Api.ViewModels.AssignedChallenge
 
         public string ImageUrl { get; set; }
 
-        public string VideoLink { get; set; }
+        public string VideoUrl { get; set; }
 
         public Difficulty Difficulty { get; set; }
 

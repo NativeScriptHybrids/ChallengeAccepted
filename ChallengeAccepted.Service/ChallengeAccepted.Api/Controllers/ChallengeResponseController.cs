@@ -108,7 +108,7 @@ namespace ChallengeAccepted.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Complete(int id, EditChallengeResponseViewModel model)
+        public IHttpActionResult Complete(int id, EditChallengeResponseViewModel model)
         {
             if (model != null && ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace ChallengeAccepted.Api.Controllers
                 {
                     if (challengeResponse.Status != ChallengeStatus.Active)
                     {
-                        return this.BadRequest("Failed challenge.");
+                        return this.BadRequest("Challenge isn't active.");
                     }
 
                     //if (HttpContext.Current.Request.Files.AllKeys.Any())

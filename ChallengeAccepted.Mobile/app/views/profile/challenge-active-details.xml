@@ -16,6 +16,7 @@
             </ActionBar.titleView>
         </ActionBar>
     </Page.actionBar>
+    <ScrollView>
     <GridLayout rows="auto, *" class="page-background">
 
         <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
@@ -58,7 +59,7 @@
             <GridLayout row="6" rows="auto, auto, *" verticalAlignment="bottom">
                 <StackLayout row="0">
                     <Button text="Add Pic" class="add-image-button" tap="onAddPicTap"/>
-                    <TextField id="VideoLink" class="text-input" hint="Video link" text="{{ videoLink }}"/>
+                    <TextField id="challenge-video-url" class="text-input" hint="Video url" text="{{ videoUrl }}"/>
                 </StackLayout>
                 <StackLayout row="1">
                     <Button text="Complete" class="white-button" tap="onCompleteChallengeTap"/>
@@ -72,7 +73,6 @@
                         <SegmentedBarItem title="Logout"/>
                     </SegmentedBar.items>
                 </SegmentedBar>
-
             </GridLayout>
         </GridLayout>
 
@@ -80,4 +80,5 @@
             <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
         </AbsoluteLayout>
     </GridLayout>
+    </ScrollView>
 </Page>
