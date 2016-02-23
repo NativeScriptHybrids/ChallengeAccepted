@@ -6,25 +6,47 @@
       </ActionBar.actionItems>
       <ActionBar.titleView>
         <GridLayout horizontalAlignment="center">
-          <Label horizontalAlignment="center" text="Completed Challenges" class="BuxtonSketch title" />
+          <Label horizontalAlignment="center" text="Completed Challenges" class="GoudySto title" />
         </GridLayout>
       </ActionBar.titleView>
     </ActionBar>
   </Page.actionBar>
-  <GridLayout rows="auto, auto, *" class="page-background">
-      <GridLayout row="6" rows="auto, auto" verticalAlignment="bottom">
-        <SegmentedBar row="1" id="bottom-segmented-bar" class="main-page-segmented-bar">
-          <SegmentedBar.items>
-            <SegmentedBarItem title="Add"/>
-            <SegmentedBarItem title="Pick"/>
-            <!--<SegmentedBarItem title="Profile"/>-->
-            <SegmentedBarItem title="Rate"/>
-            <SegmentedBarItem title="Logout"/>
-          </SegmentedBar.items>
-        </SegmentedBar>
+
+  <GridLayout rows="auto, *, auto" class="page-background">
+    <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
+      <SegmentedBar.items>
+        <SegmentedBarItem title="Active"/>
+        <SegmentedBarItem title="Done"/>
+        <SegmentedBarItem title="Edit"/>
+        <SegmentedBarItem title="Added"/>
+        <SegmentedBarItem title="Badges"/>
+      </SegmentedBar.items>
+    </SegmentedBar>
+
+    <GridLayout row="1"  rows="auto, *, *, 2*" columns="6*, 5*" id="done-stack">
+      <Label row="0" col="0" colSpan="2" text="Elbow Challenge" id="done-title"/>
+      <Image row="1" col="0" rowSpan="2" src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFill" id="done-img" />
+      <Label row="1" col="1" text="Lick your elbow" id="done-description"/>
+      <Label row="2" col="1" text="Done by: " id="done-user"/>
+
+      <GridLayout row="3" col="0" colSpan="2" columns="*, *" rows="auto">
+        <Image col="0" row="0" horizontalAlignment="left" src="~/images/dislike.png" id="dislike" class="done-like-dislike dislike"/>
+        <Image col="1" row="0" horizontalAlignment="right" src="~/images/like.png" id="like" class="done-like-dislike like"/>
+      </GridLayout>
     </GridLayout>
-    <AbsoluteLayout cssClass="activity-indicator" row="3">
+
+    <SegmentedBar row="2" id="bottom-segmented-bar" class="main-page-segmented-bar">
+      <SegmentedBar.items>
+        <SegmentedBarItem title="Add"/>
+        <SegmentedBarItem title="Pick"/>
+        <SegmentedBarItem title="Profile"/>
+        <SegmentedBarItem title="Rate"/>
+        <SegmentedBarItem title="Logout"/>
+      </SegmentedBar.items>
+    </SegmentedBar>
+
+<!--     <AbsoluteLayout cssClass="activity-indicator" row="3">
       <ActivityIndicator busy="{{ isLoading }}" cssClass="activity-indicator"/>
-    </AbsoluteLayout>
+    </AbsoluteLayout> -->
   </GridLayout>
 </Page>
