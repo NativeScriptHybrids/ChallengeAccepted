@@ -40,6 +40,28 @@ var userService = (function () {
             };
 
             return httpRequester.post(actionUrl, content, headers, success, error);
+        },
+
+        likeChallenge: function(id, success, error) {
+            var actionUrl = '/api/Votes/Like/' + id;
+            var content = '';
+            var headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
+            };
+
+            return httpRequester.post(actionUrl, content, headers, success, error);
+        }, 
+
+        dislikeChallenge: function(id, success, error) {
+            var actionUrl = '/api/Votes/Dislike/' + id;
+            var content = '';
+            var headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
+            };
+
+            return httpRequester.post(actionUrl, content, headers, success, error);
         }
     };
 

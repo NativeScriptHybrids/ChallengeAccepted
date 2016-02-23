@@ -1,0 +1,28 @@
+#done-grid {
+	background-color: #d3d3d3;
+	padding-left: 50;
+	padding-right: 50;
+}
+
+#done-title {
+	font-family: Confetti-Stream;
+	margin-top: 10;
+	margin-bottom: 0;
+	font-size: 36;
+	text-align: center;
+}
+
+#done-img {
+	border-radius: 20;
+	background-color: yellow;
+}
+
+#done-description {
+	font-size: 14;
+	font-style: italic;
+}
+
+.done-like-dislike {
+	margin-top: 20;
+	width: 100;
+}

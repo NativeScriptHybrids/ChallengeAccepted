@@ -1,18 +1,18 @@
 {
-  "nativescript": {
-    "id": "org.nativescript.ChallengeAcceptedMobile",
-    "tns-android": {
-      "version": "1.5.1"
-    }
-  },
-  "dependencies": {
-    "moment": "^2.11.2",
-    "nativescript-grid-view": "^1.2.1",
-    "nativescript-sqlite": "^1.0.8",
-    "nativescript-toast": "^1.2.0",
-    "node-notifier": "^4.5.0",
-    "tns-core-modules": "1.5.2",
-    "toastr": "^2.1.2",
-    "underscore": "^1.8.3"
-  }
+	"nativescript": {
+		"id": "org.nativescript.ChallengeAcceptedMobile",
+		"tns-android": {
+			"version": "1.5.1"
+		}
+	},
+	"dependencies": {
+		"moment": "^2.11.2",
+		"nativescript-grid-view": "^1.2.1",
+		"nativescript-sqlite": "^1.0.8",
+		"nativescript-toast": "^1.2.0",
+		"node-notifier": "^4.5.0",
+		"tns-core-modules": "1.5.2",
+		"toastr": "^2.1.2",
+		"underscore": "^1.8.3"
+	}
 }

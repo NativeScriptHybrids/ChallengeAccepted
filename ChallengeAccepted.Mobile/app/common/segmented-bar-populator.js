@@ -11,14 +11,12 @@ var SegmentedBarPopulatorModule = (function() {
         populateProfileBottomSegmentedBar: function populateProfileBottomSegmentedBar(segmentedBar){
             segmentedBar.on('propertyChange', function(){
                 if (segmentedBar.selectedIndex === 0){
-                    console.log('here');
                     helperModule.navigate("./views/challenge/add-challenge");
                 } else if (segmentedBar.selectedIndex === 1){ //Pick
                     helperModule.navigate("./views/challenge/challenge-to-pick");
                 } else if (segmentedBar.selectedIndex === 2){ //Profile
                     helperModule.navigate("./views/profile/profile");
                 } else if (segmentedBar.selectedIndex === 3){ //Peek / Browse / Rate
-                    console.log('peek');
                     helperModule.navigate("./views/challenge/done-challenges");
                 } else if (segmentedBar.selectedIndex === 4){ //LogOut
                     accountServiceModule.logout();
