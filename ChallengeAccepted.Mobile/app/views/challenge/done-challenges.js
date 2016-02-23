@@ -11,6 +11,7 @@ var globalConstants = require("~/common/global-constants");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
 var userService = require("~/data/user-service");
 var gridLayout = require("ui/layouts/grid-layout");
+var animationModule = require("~/common/animate");
 
 var completedChallenges = (function() {
     var completedChallengesResponse;
@@ -33,13 +34,14 @@ var completedChallenges = (function() {
         bottomSegmentedBar, 
         indexes = [], 
         passedCompletedChallenges = [], 
-        notPassedCompletedChallenges = []; 
+        notPassedCompletedChallenges = [],
+            page;
 
     var completedChallenges = {
 
         // Loading page event
         pageLoaded: function(args) {
-            var page = args.object;
+            page = args.object;
             page.bindingContext = completedChallenges;
 
             bottomSegmentedBar = view.getViewById(page, 'bottom-segmented-bar');
@@ -54,7 +56,7 @@ var completedChallenges = (function() {
             doneByLabel = view.getViewById(page, "done-user");
 
             userService.getCompletedChallenges(getCompletedSuccess, helperModule.handleHttpRequestError);
-
+            animationModule.slideInDiagonal(page);
             //var resp = http.request({
             //    url: globalConstants.BaseUrl + 'api/ChallengeResponse/GetCompleted',
             //    method: 'GET',
@@ -119,6 +121,8 @@ var completedChallenges = (function() {
             notPassedCompletedChallenges = passedCompletedChallenges.slice(0);
             passedCompletedChallenges = []
         }
+
+        animationModule.slideInDiagonal(page);
 
         currentIndex = Math.floor(Math.random() * (notPassedCompletedChallenges.length - 1));
         passedCompletedChallenges.push(notPassedCompletedChallenges[currentIndex]);

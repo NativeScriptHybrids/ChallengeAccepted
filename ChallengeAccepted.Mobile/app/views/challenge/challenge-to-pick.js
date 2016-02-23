@@ -8,6 +8,7 @@ var imageSource = require("image-source");
 var userService = require("~/data/user-service");
 var stackLayout = require("ui/layouts/stack-layout");
 var segmentedBarPopulator = require("~/common/segmented-bar-populator");
+var animationModule = require("~/common/animate");
 
 var challengeModules = (function() {
 	var challengesResponse;
@@ -34,14 +35,15 @@ var challengeModules = (function() {
         previousDeltaX = 0,
         indexes = [],
         passedChallenges = [],
-        notPassedChallenges = [];
+        notPassedChallenges = [],
+        page;
 
 	var index = 0;
 
     var challengeModules = {
 
         pageLoaded: function(args) {
-            var page = args.object;
+            page = args.object;
             page.bindingContext = challenges;
 
             bottomSegmentedBar = view.getViewById(page, 'bottom-segmented-bar');
@@ -57,7 +59,7 @@ var challengeModules = (function() {
             difficultyLabel = view.getViewById(page, "challenge-difficulty");
             daysToCompleteLabel = view.getViewById(page, "challenge-days-to-complete");
 
-
+            animationModule.slideInDiagonal(page);
         	var resp = http.getJSON("https://challengeaccepted.azurewebsites.net/api/challenge/get")
                 .then(function (r) {
     		    	//challengesResponse = JSON.stringify(r);
@@ -130,6 +132,8 @@ var challengeModules = (function() {
             notPassedChallenges = passedChallenges.slice(0);
             passedChallenges = []
         }
+
+        animationModule.slideInDiagonal(page);
 
     	currentIndex = Math.floor(Math.random() * (notPassedChallenges.length - 1));
         passedChallenges.push(notPassedChallenges[currentIndex]);
