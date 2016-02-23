@@ -1,7 +1,7 @@
 ﻿.title {
     horizontal-align: center;
     text-transform: uppercase;
-    font-size: 25;
+    font-size: 20;
     color: silver;
 }
 .text-input {
@@ -81,6 +81,7 @@ height: 150
 .main-page-segmented-bar{
     background-color: black;
     color: silver;
+    font-size: 11;
 }
 
 .main-label{

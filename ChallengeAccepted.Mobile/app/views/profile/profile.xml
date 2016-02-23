@@ -39,6 +39,9 @@
                 <Label id="score" class="profile-label" text="{{ score }}" row="3"/>
             </StackLayout>
             <StackLayout row="4">
+                <Label id="rankingTitle" class="profile-label-title"  text="Ranking" />
+                <Border class="profile-border"/>
+                <Label id="ranking" class="profile-label" text="12" />
                 <!--<Label id="locationTitle" class="profile-label-title"  text="Location" />-->
                 <!--<Border class="profile-border"/>-->
                 <!--<Label id="latitude" class="profile-label" text="{{ location.latitude }}" />-->

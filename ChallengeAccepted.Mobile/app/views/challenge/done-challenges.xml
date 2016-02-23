@@ -1,17 +1,16 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <Page.actionBar>
-    <ActionBar class="main-action-bar">
-      <ActionBar.actionItems>
-        <ActionItem icon="{{ 'res://dots-icon' }}"/>
-      </ActionBar.actionItems>
-      <ActionBar.titleView>
-        <GridLayout horizontalAlignment="center">
-          <Label horizontalAlignment="center" text="Completed Challenges" class="GoudySto title" />
-        </GridLayout>
-      </ActionBar.titleView>
-    </ActionBar>
-  </Page.actionBar>
-
+    <Page.actionBar>
+        <ActionBar class="action-bar" title="Register" android.icon="res://icon" android.iconVisibility="always">
+            <ActionBar.actionItems>
+            </ActionBar.actionItems>
+            <ActionBar.titleView>
+                <GridLayout horizontalAlignment="center">
+                    <Label horizontalAlignment="center" text="Completed Challenge" class="BuxtonSketch title"
+                           android:margin="0 0 0 -10"/>
+                </GridLayout>
+            </ActionBar.titleView>
+        </ActionBar>
+    </Page.actionBar>
   <GridLayout rows="auto, *, auto" class="page-background">
     <SegmentedBar row="0" id="top-segmented-bar" class="main-page-segmented-bar">
       <SegmentedBar.items>

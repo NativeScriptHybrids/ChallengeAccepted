@@ -148,7 +148,7 @@ var challengeModules = (function() {
         description = challengesResponse[currentIndex]["Description"];
         descriptionLabel.text = description;
 
-        difficulty = challengesResponse[currentIndex]["Difficulty"];
+        difficulty = helperModule.formatDifficultyToEnum(parseInt(challengesResponse[currentIndex]["Difficulty"])).toString();
         difficultyLabel.text = 'Difficulty: ' + difficulty;
 
         daysToComplete = challengesResponse[currentIndex]["DaysToComplete"];
