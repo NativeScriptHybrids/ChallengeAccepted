@@ -17,7 +17,7 @@
           <SegmentedBar.items>
             <SegmentedBarItem title="Add"/>
             <SegmentedBarItem title="Pick"/>
-            <SegmentedBarItem title="Profile"/>
+            <!--<SegmentedBarItem title="Profile"/>-->
             <SegmentedBarItem title="Rate"/>
             <SegmentedBarItem title="Logout"/>
           </SegmentedBar.items>

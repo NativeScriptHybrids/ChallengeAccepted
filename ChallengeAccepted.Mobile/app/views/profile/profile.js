@@ -80,10 +80,6 @@ var pageModules = (function() {
         segmentedBarPopulator.populateProfileTopSegmentedBar(topSegmentedBar);
 
         imageView.on('longPress', pageModules.addProfilePicture);
-
-        //registerButton.on(buttonModule.Button.tapEvent, function (args) {
-        //    viewModel.registerTap();
-        //});
     }
 
     return pageModules;

@@ -21,7 +21,7 @@
       <SegmentedBar.items>
         <SegmentedBarItem title="Active"/>
         <SegmentedBarItem title="Done"/>
-        <SegmentedBarItem title="Edit"/>
+        <SegmentedBarItem title="Profile"/>
         <SegmentedBarItem title="Added"/>
         <SegmentedBarItem title="Badges"/>
       </SegmentedBar.items>
@@ -31,7 +31,7 @@
       <gv:GridView items="{{ myBadges }}" row="1" id="badges-grid-view">
         <gv:GridView.itemTemplate>
           <GridLayout rows="100, auto">
-            <Image id="{{ Id }}" class="badge-image" src="{{ ImageUrl }}" row="0" doubleTap="onBadgeImageDoubleTap" tap="getHint" />
+            <Image id="{{ Id }}" class="badge-image opacity" src="{{ ImageUrl }}" row="0" doubleTap="onBadgeImageDoubleTap" tap="getHint" />
           </GridLayout>
         </gv:GridView.itemTemplate>
       </gv:GridView>

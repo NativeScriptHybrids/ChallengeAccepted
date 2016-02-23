@@ -20,7 +20,7 @@
             <SegmentedBar.items>
                 <SegmentedBarItem title="Active"/>
                 <SegmentedBarItem title="Done"/>
-                <SegmentedBarItem title="Edit"/>
+                <SegmentedBarItem title="Profile"/>
                 <SegmentedBarItem title="Added"/>
                 <SegmentedBarItem title="Badges"/>
             </SegmentedBar.items>
@@ -39,10 +39,10 @@
                 <Label id="score" class="profile-label" text="{{ score }}" row="3"/>
             </StackLayout>
             <StackLayout row="4">
-                <Label id="locationTitle" class="profile-label-title"  text="Location" />
-                <Border class="profile-border"/>
-                <Label id="latitude" class="profile-label" text="{{ location.latitude }}" />
-                <Label id="longitude" class="profile-label" text="{{ location.longitude }}" />
+                <!--<Label id="locationTitle" class="profile-label-title"  text="Location" />-->
+                <!--<Border class="profile-border"/>-->
+                <!--<Label id="latitude" class="profile-label" text="{{ location.latitude }}" />-->
+                <!--<Label id="longitude" class="profile-label" text="{{ location.longitude }}" />-->
             </StackLayout>
 
 

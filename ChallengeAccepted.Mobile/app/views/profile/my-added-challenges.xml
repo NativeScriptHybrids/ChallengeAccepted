@@ -21,7 +21,7 @@
       <SegmentedBar.items>
         <SegmentedBarItem title="Active"/>
         <SegmentedBarItem title="Done"/>
-        <SegmentedBarItem title="Edit"/>
+        <SegmentedBarItem title="Profile"/>
         <SegmentedBarItem title="Added"/>
         <SegmentedBarItem title="Badges"/>
       </SegmentedBar.items>

@@ -12,13 +12,14 @@ var pageModules = (function() {
     var viewModel,
         topSegmentedBar,
         bottomSegmentedBar,
-        gridView;
+        gridView,
+        page;
 
     var pageModules = {
 
         // Loading page event
         pageLoaded: function(args) {
-            var page = args.object;
+            page = args.object;
             viewModel = vmModule.MyBadgesModel;
             page.bindingContext = viewModel;
 
@@ -38,7 +39,7 @@ var pageModules = (function() {
         },
 
         onBadgeImageDoubleTap: function(args){
-            vmModule.unlockBadge(args).then(function (response) {
+            vmModule.unlockBadge(args, page).then(function (response) {
                 console.log('in unlock badge' + response);
             });
         }

@@ -30,9 +30,12 @@ function getHint(args){
     }
 };
 
-var currentBadge;
-function unlockBadge(args){
+var currentBadge,
+    currentPage;
+
+function unlockBadge(args, page){
     currentBadge = args.object.id;
+    currentPage = page;
     return myBadgeService.unlockBadge(args.object.id, unlockBadgeSuccess, helperModule.handleHttpRequestError);
 };
 
@@ -40,6 +43,12 @@ function unlockBadgeSuccess(response) {
     var unlockResponseContent =  response.content.toJSON();
     console.log(JSON.stringify(response));
     helperModule.notify('Successfully unlocked badge!');
+
+    //TODO
+    currentPage.addCss("#" + currentBadge + "{ opacity: 1}");
+
+    //currentPage.addCss(".opacity { opacity: 1}");
+    //// currentPage.addCss(".page-background,{background-color: black;}");
     return currentBadge;
 }
 
