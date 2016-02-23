@@ -23,7 +23,7 @@
       </SegmentedBar.items>
     </SegmentedBar>
 
-    <GridLayout row="1"  rows="auto, *, *, 2*" columns="6*, 5*" id="done-grid">
+<!--     <GridLayout row="1"  rows="auto, *, *, 2*" columns="6*, 5*" id="done-container">
       <Label row="0" col="0" colSpan="2" text="Elbow Challenge" id="done-title"/>
       <Image row="1" col="0" rowSpan="2" src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" stretch="aspectFill" id="done-img" />
       <Label row="1" col="1" text="Lick your elbow" id="done-description"/>
@@ -33,7 +33,19 @@
         <Image col="0" row="0" horizontalAlignment="left" src="~/images/dislike.png" id="dislike" class="done-like-dislike dislike" tap="onDislikeImageTap"/>
         <Image col="1" row="0" horizontalAlignment="right" src="~/images/like.png" id="like" class="done-like-dislike like" tap="onLikeImageTap"/>
       </GridLayout>
-    </GridLayout>
+    </GridLayout> -->
+
+    <StackLayout row="1" id="done-container" class="page-background">
+      <Image src="https://eustat.files.wordpress.com/2015/05/wpid-wp-1432967860156.jpg" class="done-img" stretch="aspectFill" id="done-img" />
+      <Label text="Elbow Challenge" textWrap="true" id="done-title"/>
+      <Label text="Lick your elbow" textWrap="true" id="done-description"/>
+      <Label text="Done by: " id="done-user" class="done-user" />
+
+      <GridLayout row="3" col="0" colSpan="2" columns="*, *" rows="auto">
+        <Image col="0" row="0" horizontalAlignment="left" src="~/images/dislike.png" id="dislike" class="done-like-dislike dislike" tap="onDislikeImageTap"/>
+        <Image col="1" row="0" horizontalAlignment="right" src="~/images/like.png" id="like" class="done-like-dislike like" tap="onLikeImageTap"/>
+      </GridLayout>
+    </StackLayout>
 
     <SegmentedBar row="2" id="bottom-segmented-bar" class="main-page-segmented-bar">
       <SegmentedBar.items>

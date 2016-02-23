@@ -1,28 +1,46 @@
-#done-grid {
-	background-color: #d3d3d3;
-	padding-left: 50;
-	padding-right: 50;
+.page-background,{
+    background-color: indianred;
 }
 
 #done-title {
 	font-family: Confetti-Stream;
+	font-size: 25;
+	color: #f89406;
+	padding-bottom: 10;
 	margin-top: 10;
-	margin-bottom: 0;
-	font-size: 36;
 	text-align: center;
 }
 
 #done-img {
-	border-radius: 20;
-	background-color: yellow;
+	height: 150;
 }
 
 #done-description {
-	font-size: 14;
-	font-style: italic;
+	font-size: 18;
+	text-align: center;
+	padding-bottom: 10;
+	padding-left: 10;
+	padding-right:10;
+	color:antiquewhite;
+}
+
+#done-user {
+    font-size: 14;
+    font-style: italic;
+    color:antiquewhite;
+    padding-bottom: 10;
+    text-align: center;
 }
 
 .done-like-dislike {
-	margin-top: 20;
-	width: 100;
+	margin-top: 0;
+	width: 60;
+}
+
+#dislike {
+	margin-left: 50;
+}
+
+#like {
+	margin-right: 50;
 }

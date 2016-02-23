@@ -86,22 +86,24 @@ var completedChallenges = (function() {
         }, 
 
         onLikeImageTap: function() {
-            console.log('Current completed challenge id: ' + completedChallengesResponse[currentIndex]["Id"]);
-            var currentCompletedChallengeId = completedChallengesResponse[currentIndex]["Id"];
+            // console.log('Current completed challenge id: ' + completedChallengesResponse[currentIndex]["Id"]);
+            // var currentCompletedChallengeId = completedChallengesResponse[currentIndex]["Id"];
 
-            userService.likeChallenge(currentCompletedChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
+            // userService.likeChallenge(currentCompletedChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
+            helperModule.notify('Liked');
 
-            changeContent();
+            // changeContent();
 
         },
 
         onDislikeImageTap: function() {
-            console.log('Current completed challenge id: ' + completedChallengesResponse[currentIndex]["Id"]);
-            var currentCompletedChallengeId = completedChallengesResponse[currentIndex]["Id"];
+            // console.log('Current completed challenge id: ' + completedChallengesResponse[currentIndex]["Id"]);
+            // var currentCompletedChallengeId = completedChallengesResponse[currentIndex]["Id"];
 
-            userService.dislikeChallenge(currentCompletedChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
+            // userService.dislikeChallenge(currentCompletedChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
+            helperModule.notify('Disliked');
 
-            changeContent();
+            // changeContent();
         }
     };
 
