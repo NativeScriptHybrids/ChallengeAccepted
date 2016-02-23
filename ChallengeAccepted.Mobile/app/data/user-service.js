@@ -17,6 +17,12 @@ var userService = (function () {
 
         },
 
+        getCompletedChallenges: function (success, error) {
+            var actionUrl = 'api/ChallengeResponse/GetCompleted';
+
+            return httpRequester.authGet(actionUrl, success, error);
+        },
+
         addChallenge: function (challenge, success, error) {
             var actionUrl = 'api/Challenge/Add';
             var content = JSON.stringify(challenge);
@@ -70,4 +76,6 @@ var userService = (function () {
 
 exports.addChallenge = userService.addChallenge;
 exports.acceptChallenge = userService.acceptChallenge;
-
+exports.getCompletedChallenges = userService.getCompletedChallenges;
+exports.dislikeChallenge = userService.dislikeChallenge;
+exports.likeChallenge = userService.likeChallenge;

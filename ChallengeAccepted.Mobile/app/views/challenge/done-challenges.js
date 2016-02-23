@@ -53,34 +53,36 @@ var completedChallenges = (function() {
             descriptionLabel = view.getViewById(page, "done-description");
             doneByLabel = view.getViewById(page, "done-user");
 
-            var resp = http.request({
-                url: globalConstants.BaseUrl + 'api/ChallengeResponse/GetCompleted',
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
-                }
-            }).then(function (r) {
-                //challengesResponse = JSON.stringify(r);
-                completedChallengesResponse = r;
-                //console.log(JSON.stringify(challengesResponse));
-                console.log('Length: ' + completedChallengesResponse.length);
-                helperModule.notify('Length: ' + r.length);
+            userService.getCompletedChallenges(getCompletedSuccess, helperModule.handleHttpRequestError);
 
-                indexes = completedChallengesResponse.map(function(obj) {
-                    return obj["Id"];
-                });
-                
-                notPassedCompletedChallenges = indexes.slice(0);
-
-                console.log('Indexes: [' + indexes.join(',') + ']');
-                console.log('Not passed: [' + notPassedCompletedChallenges.join(',') + ']');
-
-                changeContent();
-            }).catch(function (e) {
-                console.log('Error getting completed challenges');
-                console.log(e);
-            });
+            //var resp = http.request({
+            //    url: globalConstants.BaseUrl + 'api/ChallengeResponse/GetCompleted',
+            //    method: 'GET',
+            //    headers: {
+            //        "Content-Type": "application/json",
+            //        "Authorization": "Bearer " + AppSettings.getString(globalConstants.LocalStorageTokenKey)
+            //    }
+            //}).then(function (r) {
+            //    //challengesResponse = JSON.stringify(r);
+            //    completedChallengesResponse = r;
+            //    //console.log(JSON.stringify(challengesResponse));
+            //    console.log('Length: ' + completedChallengesResponse.length);
+            //    helperModule.notify('Length: ' + r.length);
+            //
+            //    indexes = completedChallengesResponse.map(function(obj) {
+            //        return obj["Id"];
+            //    });
+            //
+            //    notPassedCompletedChallenges = indexes.slice(0);
+            //
+            //    console.log('Indexes: [' + indexes.join(',') + ']');
+            //    console.log('Not passed: [' + notPassedCompletedChallenges.join(',') + ']');
+            //
+            //    changeContent();
+            //}).catch(function (e) {
+            //    console.log('Error getting completed challenges');
+            //    console.log(e);
+            //});
 
             attachEvents();
         }, 
@@ -92,7 +94,7 @@ var completedChallenges = (function() {
             // userService.likeChallenge(currentCompletedChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
             helperModule.notify('Liked');
 
-            // changeContent();
+             changeContent();
 
         },
 
@@ -103,7 +105,7 @@ var completedChallenges = (function() {
             // userService.dislikeChallenge(currentCompletedChallengeId, acceptSuccess, helperModule.handleHttpRequestError);
             helperModule.notify('Disliked');
 
-            // changeContent();
+             changeContent();
         }
     };
 
@@ -145,6 +147,26 @@ var completedChallenges = (function() {
     function acceptSuccess(response) {
         var id = response.content.toJSON()['Id'];
         helperModule.notify('Voted');
+    }
+
+    function getCompletedSuccess(r){
+        console.log(JSON.stringify(r.content.toJSON()));
+        //challengesResponse = JSON.stringify(r);
+        completedChallengesResponse = r.content.toJSON();
+        //console.log(JSON.stringify(challengesResponse));
+        //console.log('Length: ' + completedChallengesResponse.length);
+       // helperModule.notify('Length: ' + r.length);
+
+        indexes = completedChallengesResponse.map(function(obj) {
+            return obj["Id"];
+        });
+
+        notPassedCompletedChallenges = indexes.slice(0);
+
+        console.log('Indexes: [' + indexes.join(',') + ']');
+        console.log('Not passed: [' + notPassedCompletedChallenges.join(',') + ']');
+
+        changeContent();
     }
 
     return completedChallenges;
